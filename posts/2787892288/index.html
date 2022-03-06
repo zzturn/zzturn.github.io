@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Telegram api tdlib 使用 | xin</title><meta name="keywords" content="telegram"><meta name="author" content="xin"><meta name="copyright" content="xin"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Telegram api tdlib 介绍Telegram 是俄罗斯人开发的一款通讯软件，其加密特性以及功能的强大和易用比 WeChat 好的多，而且 Telegram 提供所有的 api 使用，简直爽到爆。本文意在整合一下资源，并结合自己实际操作情况，简单介绍一下如何在 Python 程序中调用 telegram api 来自定义一些操作。  Telegram APIs 里是 Telegram">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Telegram api tdlib 使用">
+<meta property="og:url" content="https://luoxin.vip/posts/2787892288/index.html">
+<meta property="og:site_name" content="xin">
+<meta property="og:description" content="Telegram api tdlib 介绍Telegram 是俄罗斯人开发的一款通讯软件，其加密特性以及功能的强大和易用比 WeChat 好的多，而且 Telegram 提供所有的 api 使用，简直爽到爆。本文意在整合一下资源，并结合自己实际操作情况，简单介绍一下如何在 Python 程序中调用 telegram api 来自定义一些操作。  Telegram APIs 里是 Telegram">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/xinlx/pic/raw/master/img/bg3.jpg">
+<meta property="article:published_time" content="2022-03-05T12:57:05.778Z">
+<meta property="article:modified_time" content="2022-03-06T10:13:47.947Z">
+<meta property="article:author" content="xin">
+<meta property="article:tag" content="telegram">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/xinlx/pic/raw/master/img/bg3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://luoxin.vip/posts/2787892288/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//s4.cnzz.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script async="async" data-pjax="data-pjax" src="https://s4.cnzz.com/z_stat.php?id=1280052504&amp;web_id=1280052504"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":220},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-06 18:13:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/optimize.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_2465342_gu0ppacxtjk.css"><link rel="stylesheet" href="/css/font-awesome-animation.min.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home faa-wrench animated"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment-dots faa-float animated"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/xinlx/pic/raw/master/img/bg3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">xin</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home faa-wrench animated"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-comment-dots faa-float animated"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Telegram api tdlib 使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-05T12:57:05.778Z" title="发表于 2022-03-05 20:57:05">2022-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-06T10:13:47.947Z" title="更新于 2022-03-06 18:13:47">2022-03-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Telegram api tdlib 使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Telegram-api-tdlib-介绍"><a href="#Telegram-api-tdlib-介绍" class="headerlink" title="Telegram api tdlib 介绍"></a>Telegram api tdlib 介绍</h2><p>Telegram 是俄罗斯人开发的一款通讯软件，其加密特性以及功能的强大和易用比 WeChat 好的多，而且 Telegram 提供所有的 api 使用，简直爽到爆。本文意在整合一下资源，并结合自己实际操作情况，简单介绍一下如何在 Python 程序中调用 telegram api 来自定义一些操作。 </p>
+<p><a target="_blank" rel="noopener" href="https://core.telegram.org/">Telegram APIs</a> 里是 Telegram 的官方文档，其 API 分为两种，Bot API, TDLib. 前者顾名思义，就是 Telegram 里面一些 bot 机器人的 api，后者则是包含了 Telegram 里的所有接口，也是本文接下来要介绍的主要内容。</p>
+<p>TDLib 全称 <a target="_blank" rel="noopener" href="https://core.telegram.org/tdlib">Telegram Database Library</a>，开发者可以通过这个 library 开发一套自己的第三方 Telegram 客户端。其 GitHub 地址为<a target="_blank" rel="noopener" href="https://github.com/tdlib/td">td</a>，主要使用 C++ 来开发，但其他大部分语言也有可以使用，如 Java, Python, JavaScript, Go, C#, PHP, Rust…具体的可以根据 ReadMe 来仔细了解一下。</p>
+<h2 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h2><blockquote>
+<p>  笔者环境为 Ubuntu 20.04.4 LTS, Python 3.8.10</p>
+</blockquote>
+<ul>
+<li><p>安装 python-telegram</p>
+<p>  笔者根据 <a target="_blank" rel="noopener" href="https://github.com/tdlib/td/tree/master/example#python">ReadMe</a> 里的说明，选择使用 <a target="_blank" rel="noopener" href="https://github.com/alexander-akhmetov/python-telegram">python-telegram</a></p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install python-telegram</span><br></pre></td></tr></table></figure></li>
+<li><p>编译 tdlib</p>
+<p>  关于编译 <a target="_blank" rel="noopener" href="https://github.com/tdlib/td#building">tdlib</a>, 官方特意提供了一个<a target="_blank" rel="noopener" href="https://tdlib.github.io/td/build.html">网页</a>（如下图），可以直接复制命令。</p>
+<p>  <img src="https://gitee.com/xinlx/pic/raw/master/img/Screenshot%20from%202022-03-05%2022-07-48.png"></p>
+<p>  亲测在笔者环境下完美执行</p>
+</li>
+<li><p>注册 <code>api_id</code>, <code>api_hash</code></p>
+<p>  编译需要一段时间，我们这时候再去 <a target="_blank" rel="noopener" href="https://my.telegram.org/apps">https://my.telegram.org/apps</a> 里申请一个 application，拿到 <code>api_id</code> 和 <code>api_hash</code>，下文会用到</p>
+</li>
+</ul>
+<h2 id="一个-python-telegram-官方小-demo"><a href="#一个-python-telegram-官方小-demo" class="headerlink" title="一个 python-telegram 官方小 demo"></a>一个 python-telegram 官方小 demo</h2><p>在做好上述的准备工作后，就可以开始 code 了。</p>
+<p>根据 python-telegram 里的<a target="_blank" rel="noopener" href="https://python-telegram.readthedocs.io/en/0.14.0/tutorial.html">文档</a></p>
+<p>我们首先直接贴一段代码，体验一下效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> telegram.client <span class="keyword">import</span> Telegram</span><br><span class="line"></span><br><span class="line">tg = Telegram(</span><br><span class="line">    api_id=<span class="string">&#x27;your_api_id&#x27;</span>,</span><br><span class="line">    api_hash=<span class="string">&#x27;your_api_hash&#x27;</span>,</span><br><span class="line">    phone=<span class="string">&#x27;+86your_phone_number&#x27;</span>,</span><br><span class="line">    database_encryption_key=<span class="string">&#x27;changeme1234&#x27;</span>,</span><br><span class="line">)</span><br><span class="line">tg.login()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_message_handler</span>(<span class="params">update</span>):</span></span><br><span class="line">    <span class="comment"># we want to process only text messages</span></span><br><span class="line">    message_content = update[<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;content&#x27;</span>].get(<span class="string">&#x27;text&#x27;</span>, &#123;&#125;)</span><br><span class="line">    message_text = message_content.get(<span class="string">&#x27;text&#x27;</span>, <span class="string">&#x27;&#x27;</span>).lower()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> message_text == <span class="string">&#x27;ping&#x27;</span>:</span><br><span class="line">        chat_id = update[<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;chat_id&#x27;</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Ping has been received from <span class="subst">&#123;chat_id&#125;</span>&#x27;</span>)</span><br><span class="line">        tg.send_message(</span><br><span class="line">            chat_id=chat_id,</span><br><span class="line">            text=<span class="string">&#x27;pong&#x27;</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">tg.add_message_handler(new_message_handler)</span><br><span class="line">tg.idle()</span><br></pre></td></tr></table></figure>
+
+<p>这就是一段最简单的代码了，写完之后直接运行，就可以了，如果有额外需要输入密码或者 sms 那就按要求输入就可以了。这段代码的作用是在，接受到内容为 “ping” 的消息的时候，会自动回复 “pong”，可以自己在 Telegram 里发一条消息试试。</p>
+<div class='tip warning'><b>潜在的坑!!!</b></p><p>如果由于有运行出现问题，提示 <code>Network is unreachable</code>等，那就在登录的时候需要额外的配置一下了，如下：<p></div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">proxy_type = &#123;</span><br><span class="line">    <span class="string">&#x27;@type&#x27;</span>: <span class="string">&#x27;proxyTypeHttp&#x27;</span>,  <span class="comment"># &#x27;proxyTypeSocks5&#x27;, &#x27;proxyTypeHttp&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">proxy_port = <span class="number">7890</span></span><br><span class="line">proxy_server = <span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line">tg = Telegram(</span><br><span class="line">    <span class="comment"># 需要从 https://my.telegram.org/apps 获取</span></span><br><span class="line">    api_id=<span class="string">&#x27;your_api_id&#x27;</span>,</span><br><span class="line">    api_hash=<span class="string">&#x27;your_api_hash&#x27;</span>,</span><br><span class="line">    phone=<span class="string">&#x27;+86your_phone_number&#x27;</span>,</span><br><span class="line">    <span class="comment"># 这个看名称好像是加密用的，内容自定吧，笔者没有做更改，毕竟是自己的一个学习 demo</span></span><br><span class="line">    database_encryption_key=<span class="string">&#x27;changeme1234&#x27;</span>,</span><br><span class="line">    proxy_server=proxy_server,</span><br><span class="line">    proxy_port=proxy_port,</span><br><span class="line">    proxy_type=proxy_type,</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 关闭 ipv6</span></span><br><span class="line">tg.call_method(</span><br><span class="line">    <span class="string">&#x27;setOption&#x27;</span>,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;prefer_ipv6&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;value&#x27;</span>: &#123;<span class="string">&#x27;@type&#x27;</span>: <span class="string">&#x27;optionValueBoolean&#x27;</span>, <span class="string">&#x27;value&#x27;</span>: <span class="literal">False</span>&#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 登录</span></span><br><span class="line">tg.login()</span><br><span class="line"><span class="comment"># 其他所有操作都需要在 login 之后</span></span><br></pre></td></tr></table></figure>
+
+<p>在登录之前设置一下代理，并且关闭 ipv6，代码中的 <code>proxy_type</code>, <code>proxy_port</code> 都需要根据自己的情况来改动，笔者用的代理工具是 clash，所以端口号默认为 7890。</p>
+<p>以上就基本大功告成了。</p>
+<p>通过代码可以看到，<code>Telegram</code> 是里面的核心类，所有的方法都是围绕着对象 <code>tg</code> 来进行的，都是通过这个对象来进行调用的。 python-telegram 中有提供一些方法，如 <code>send_message</code>, <code>get_chat</code>, <code>get_me</code>, <code>get_chat_history</code> 等，如上面代码，具体可以看 <code>Telegram</code> 类的源码。</p>
+<p>还有一种方式就是，通过调用 <code>tg.call_method(...)</code> 来调用，这个方法就比较全面了，可以通过这个方法调用所有的 tdlib 所提供的方法，如上文的通过 <code>call_method</code> 来关闭 ipv6 就是这样操作的。具体可在 <a target="_blank" rel="noopener" href="https://core.telegram.org/tdlib/docs/td__api_8h.html">td_api</a> 里找到所有的 api。</p>
+<p>接下来我们以一个例子来详细介绍一下 <code>call_method</code> 的使用方法。</p>
+<h2 id="api-的调用-call-method"><a href="#api-的调用-call-method" class="headerlink" title="api 的调用 call_method"></a>api 的调用 <code>call_method</code></h2><p>作为一个通讯软件，对于 Telegram 我们肯定要获取通讯录了，或者说聊天窗口。我们接下来就试试</p>
+<p>根据 <a target="_blank" rel="noopener" href="https://core.telegram.org/tdlib/docs/classtd_1_1td__api_1_1get_chats.html">getChats</a> 文档</p>
+<p><img src="https://gitee.com/xinlx/pic/raw/master/img/Screenshot%20from%202022-03-06%2015-48-38.png" alt="Screenshot from 2022-03-06 15-48-38"></p>
+<p>由此可知，<code>getChats</code> 有两个参数，一个是 <code>chat_list</code>, 一个是 <code>limit</code> ，于是我们在实际调用的时候，就可以使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tg.call_method(<span class="string">&#x27;getChats&#x27;</span>, &#123;<span class="string">&#x27;limit&#x27;</span>=<span class="number">100</span>,&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>来获取 main chat list （就是默认主聊天页面）里的所有 chat id 了，具体获取方式如下（打断点）</p>
+<p><img src="https://gitee.com/xinlx/pic/raw/master/img/Screenshot%20from%202022-03-06%2017-01-12.png" alt="Screenshot from 2022-03-06 17-01-12"></p>
+<p>这就是其具体的返回值了，所有调用的结果都是如此，<code>client</code> 顾名思义是客户端的意思，主要是当前登录的一些信息， <code>error</code>, <code>error_info</code> 是一些错误状态的说明，当调用失败时，会有具体的错误信息。其实我们主要就是看 <code>update</code> 里的内容</p>
+<p><img src="https://gitee.com/xinlx/pic/raw/master/img/Screenshot%20from%202022-03-06%2017-04-21.png" alt="Screenshot from 2022-03-06 17-04-21"></p>
+<p>其中 <code>chat_ids</code> 就是我们最关注的信息，由于官方 api 设计的原因，在这个 api 里只会返回 chat 的 id，如图片所示， <code>chat_ids</code> 是一个列表，由于我们在代码里设置了 <code>limit: 20</code> 所以，只返回了 20 个 id。</p>
+<div
+  class="note icon custom iconfont icon-QQ2"
+  style="background: #fdf8ea;border-left-color: #f0ad4e;"
+>
+  <p>❓细心的读者可能会发现，明明官方文档里形参是 <code>chat_list_</code>, <code>limit_</code> 为什么，python 代码里却没有最后一个下划线呢，以及 <code>chat_list</code> 去哪里了？<br/>✔️首先，第一个问题，其实笔者也不太清楚，主要是大家约定都是默认去掉的，而且也只有去掉才能调用成功。第二个问题，<code>chat_list</code> 这里只是为了简单起见所以才没有传，文档里写的也很清楚，<code>pass null to get chats from the main chat list</code></p>
+</div>
+
+
+<p>以上就是 api 的具体调用流程，学会了 api 调用以及查看官方的 api 文档，就可以自己进行开发了。</p>
+<h2 id="又一个小-demo"><a href="#又一个小-demo" class="headerlink" title="又一个小 demo"></a>又一个小 demo</h2><p>以下，笔者再来介绍一下，自己所写的一小段代码，主要是为一些频道生成 url 链接。</p>
+<blockquote>
+<p>  因为笔者准备注销当亲爱的 telegram 帐号，重新申请一个，但是由于里面有一些频道还是很不错了，为了防止丢失，而又不愿意手动一个个复制粘贴，恰好知道 telegram 有提供 api，所以自己就写了一段如下的程序</p>
+</blockquote>
+<p>根据笔者在网上搜寻到的信息，一些 <code>public</code> 的频道的 <code>t.me</code> 域名的分享链接，其实都是 <code>https://t.me/&#123;username&#125;</code> 格式，其中 <code>username</code> 就是一个 group 信息里所包含的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> telegram.client <span class="keyword">import</span> Telegram</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> webbrowser</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> telegram.client <span class="keyword">import</span> Telegram</span><br><span class="line"><span class="keyword">from</span> telegram.tdjson <span class="keyword">import</span> TDJson</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupInfoCustomItem</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    自定义一个类，存储所关注的信息</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, chat_id, supergroup_id, title, username</span>):</span></span><br><span class="line">        self.chat_id = chat_id</span><br><span class="line">        self.supergroup_id = supergroup_id</span><br><span class="line">        self.title = title</span><br><span class="line">        self.username = username</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    登录</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    proxy_type = &#123;</span><br><span class="line">        <span class="string">&#x27;@type&#x27;</span>: <span class="string">&#x27;proxyTypeHttp&#x27;</span>,  <span class="comment"># &#x27;proxyTypeSocks5&#x27;, &#x27;proxyTypeHttp&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    proxy_port = <span class="number">7890</span></span><br><span class="line">    proxy_server = <span class="string">&#x27;localhost&#x27;</span></span><br><span class="line"></span><br><span class="line">    tg = Telegram(</span><br><span class="line">        api_id=<span class="string">&#x27;13094551&#x27;</span>,</span><br><span class="line">        api_hash=<span class="string">&#x27;2f9f21feb00bcfd298e41705750e64e2&#x27;</span>,</span><br><span class="line">        phone=<span class="string">&#x27;+8613521026192&#x27;</span>,</span><br><span class="line">        database_encryption_key=<span class="string">&#x27;changeme1234&#x27;</span>,</span><br><span class="line">        <span class="comment"># 代理</span></span><br><span class="line">        proxy_server=proxy_server,</span><br><span class="line">        proxy_port=proxy_port,</span><br><span class="line">        proxy_type=proxy_type,</span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># 关闭 ipv6</span></span><br><span class="line">    tg.call_method(</span><br><span class="line">        <span class="string">&#x27;setOption&#x27;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;prefer_ipv6&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;value&#x27;</span>: &#123;<span class="string">&#x27;@type&#x27;</span>: <span class="string">&#x27;optionValueBoolean&#x27;</span>, <span class="string">&#x27;value&#x27;</span>: <span class="literal">False</span>&#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># you must call login method before others</span></span><br><span class="line">    tg.login()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_main_chat_ids</span>(<span class="params">tg</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取所有的 chat_ids</span></span><br><span class="line"><span class="string">    这里直接使用了 python-telegram 默认的接口</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    all_chat = tg.get_chats()</span><br><span class="line">    <span class="comment"># 返回结果是异步的，所以需要 wait，不然拿不到结果</span></span><br><span class="line">    all_chat.wait()</span><br><span class="line">    <span class="keyword">return</span> all_chat.update.get(<span class="string">&quot;chat_ids&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_super_group_username</span>(<span class="params">tg, chat_ids</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    获取所有的 supergroup 的 username</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    group_ids = <span class="built_in">list</span>(<span class="built_in">filter</span>(<span class="keyword">lambda</span> x: x &lt; <span class="number">0</span>, chat_ids))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;all chat num: &quot;</span> + <span class="built_in">str</span>(<span class="built_in">len</span>(chat_ids)))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;group num: &quot;</span> + <span class="built_in">str</span>(<span class="built_in">len</span>(group_ids)))</span><br><span class="line">    all_details = []</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> group_ids:</span><br><span class="line">        chat_info = tg.get_chat(<span class="built_in">id</span>)</span><br><span class="line">        chat_info.wait()</span><br><span class="line">        supergroup_id = chat_info.update.get(<span class="string">&#x27;type&#x27;</span>).get(<span class="string">&#x27;supergroup_id&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> supergroup_id:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        supergroup_info = tg.call_method(<span class="string">&#x27;getSupergroup&#x27;</span>, &#123;<span class="string">&#x27;supergroup_id&#x27;</span>: supergroup_id&#125;)</span><br><span class="line">        supergroup_info.wait()</span><br><span class="line">        group_info_custom_item = GroupInfoCustomItem(chat_id=<span class="built_in">id</span>, supergroup_id=supergroup_id,</span><br><span class="line">                                                     title=chat_info.update.get(<span class="string">&#x27;title&#x27;</span>),</span><br><span class="line">                                                     username=supergroup_info.update.get(<span class="string">&#x27;username&#x27;</span>))</span><br><span class="line">        all_details.append(group_info_custom_item)</span><br><span class="line">    <span class="keyword">return</span> all_details</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    tg = login()</span><br><span class="line">    main_chat_ids = get_main_chat_ids(tg)</span><br><span class="line">    infos = get_all_super_group_username(tg, main_chat_ids)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> infos:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;https://t.me/&quot;</span> + item.username)</span><br><span class="line">    tg.stop()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>关于 chat, group, supergroup 等名词，具体可看<a target="_blank" rel="noopener" href="https://core.telegram.org/tdlib/getting-started#tdlib-glossary">官方文档</a></p>
+<p>运行上述程序，可以得到类似于如下结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;t.me&#x2F;VirMachBF</span><br><span class="line">https:&#x2F;&#x2F;t.me&#x2F;maliqdfuankai</span><br><span class="line">https:&#x2F;&#x2F;t.me&#x2F;dfgdsdf65465</span><br><span class="line">https:&#x2F;&#x2F;t.me&#x2F;thosdfrnotice</span><br><span class="line">https:&#x2F;&#x2F;t.me&#x2F;SMsdfG66</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>根据这些链接（为了保护隐私，上述链接都是不存在的），就可以在新帐号里直接点击链接加入了，当然还可以通过调用 api 加入，哈哈哈。</p>
+<blockquote>
+<p>  复制粘贴只是三五分钟的事情，而笔者却为了节省三五分钟的麻烦，花掉了三五个小时来研究 api 😂😂</p>
+</blockquote>
+<p>更多自定义的操作就需要查看 tdlib 以及 python-telegram 的文档了，有什么想要实现的操作，可以在 <a target="_blank" rel="noopener" href="https://core.telegram.org/tdlib/docs/td__api_8h.html">tdlib</a> 中找一下自己想要的 api。</p>
+<p>如果你在使用过程中，有遇到 bug，欢迎提问！！</p>
+<p>如果有自己写的小 dmeo，也可以拿来一起学习交流！！！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">xin</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://luoxin.vip/posts/2787892288/">https://luoxin.vip/posts/2787892288/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://luoxin.vip" target="_blank">xin</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/telegram/">telegram</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/xinlx/pic/raw/master/img/bg3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/114940276/"><img class="next-cover" src="https://gitee.com/xinlx/pic/raw/master/img/bg21.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">服务器初始配置</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">xin</div><div class="author-info__description">love & peace</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/luoxin971"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/luoxin971" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:luoxin9712@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/73793357" target="_blank" title="Bilibili"><i class="iconfont icon-bilibili-fill1 icon-bilibili-social"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">感谢关注，不定期更新自己的学习情况和感悟</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Telegram-api-tdlib-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Telegram api tdlib 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">安装环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA-python-telegram-%E5%AE%98%E6%96%B9%E5%B0%8F-demo"><span class="toc-number">3.</span> <span class="toc-text">一个 python-telegram 官方小 demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#api-%E7%9A%84%E8%B0%83%E7%94%A8-call-method"><span class="toc-number">4.</span> <span class="toc-text">api 的调用 call_method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%88%E4%B8%80%E4%B8%AA%E5%B0%8F-demo"><span class="toc-number">5.</span> <span class="toc-text">又一个小 demo</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/2787892288/" title="Telegram api tdlib 使用"><img src="https://gitee.com/xinlx/pic/raw/master/img/bg3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Telegram api tdlib 使用"/></a><div class="content"><a class="title" href="/posts/2787892288/" title="Telegram api tdlib 使用">Telegram api tdlib 使用</a><time datetime="2022-03-05T12:57:05.778Z" title="发表于 2022-03-05 20:57:05">2022-03-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/114940276/" title="服务器初始配置"><img src="https://gitee.com/xinlx/pic/raw/master/img/bg21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器初始配置"/></a><div class="content"><a class="title" href="/posts/114940276/" title="服务器初始配置">服务器初始配置</a><time datetime="2022-02-22T14:09:12.930Z" title="发表于 2022-02-22 22:09:12">2022-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/794273457/" title="正则表达式"><img src="https://gitee.com/xinlx/pic/raw/master/img/bg19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="正则表达式"/></a><div class="content"><a class="title" href="/posts/794273457/" title="正则表达式">正则表达式</a><time datetime="2022-02-21T14:14:49.390Z" title="发表于 2022-02-21 22:14:49">2022-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2393743702/" title="SSH 使用"><img src="https://gitee.com/xinlx/pic/raw/master/img/bg15.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SSH 使用"/></a><div class="content"><a class="title" href="/posts/2393743702/" title="SSH 使用">SSH 使用</a><time datetime="2022-02-21T13:57:40.674Z" title="发表于 2022-02-21 21:57:40">2022-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/2608075722/" title="Git 命令基本使用"><img src="https://gitee.com/xinlx/pic/raw/master/img/bg7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git 命令基本使用"/></a><div class="content"><a class="title" href="/posts/2608075722/" title="Git 命令基本使用">Git 命令基本使用</a><time datetime="2022-02-21T13:57:40.670Z" title="发表于 2022-02-21 21:57:40">2022-02-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022 By xin</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://luoxin.vip/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '081SkyEOOw2kIRK2MtLrE2ro-MdYXbMMI',
+      appKey: 'tGH3wCrN1RpuWEsjncF8PzhQ',
+      placeholder: '记得留下你的昵称和邮箱....可以快速收到回复',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script async data-pjax src="/js/optimize.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
