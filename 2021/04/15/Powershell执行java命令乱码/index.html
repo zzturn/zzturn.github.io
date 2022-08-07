@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Powershell执行java命令乱码, xin">
     <meta name="description" content="Powershell 执行 java 命令乱码问题：下载完 OpenJDK 并配好环境变量后，在 Powershell 中，输入
-1java
+java
 
 显示乱码
 
@@ -20,7 +20,7 @@ UTF8
 添加环境变量
 
 
- ">
+  ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -426,13 +426,16 @@ UTF8
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Powershell-执行-java-命令乱码"><a href="#Powershell-执行-java-命令乱码" class="headerlink" title="Powershell 执行 java 命令乱码"></a>Powershell 执行 java 命令乱码</h1><p>问题：下载完 OpenJDK 并配好环境变量后，在 Powershell 中，输入</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">java<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>显示乱码</p>
 <img src="https://gitee.com/xinlx/pic/raw/master/img/image-20210415215751031.png" alt="image-20210415215751031" style="zoom: 67%;">
@@ -446,11 +449,13 @@ UTF8
 <p>添加环境变量</p>
 <p><img src="https://gitee.com/xinlx/pic/raw/master/img/image-20210415215923941.png" alt="image-20210415215923941"></p>
 <blockquote>
-  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_TOOL_OPTIONS</span><br><span class="line">-Dfile.encoding=UTF-8</span><br></pre></td></tr></tbody></table></figure>
+  <pre class="line-numbers language-none"><code class="language-none">JAVA_TOOL_OPTIONS
+-Dfile.encoding=UTF-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <p>或者把语言设置为英文也行</p>
 <blockquote>
-  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JAVA_TOOL_OPTIONS</span><br><span class="line">-Duser.language=en</span><br></pre></td></tr></tbody></table></figure>
+  <pre class="line-numbers language-none"><code class="language-none">JAVA_TOOL_OPTIONS
+-Duser.language=en<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <p>以下是修复之后的情况</p>
 <img src="https://gitee.com/xinlx/pic/raw/master/img/image-20210415221901717.png" alt="image-20210415221901717" style="zoom:67%;">
@@ -726,6 +731,9 @@ UTF8
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

@@ -414,6 +414,9 @@ LinkedLi">
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -627,10 +630,21 @@ LinkedLi">
 </ul>
 <blockquote>
 <p>  对于以上三种方法，实例如下：</p>
-  <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HashMap&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"key1"</span>, <span class="string">"value1"</span>);</span><br><span class="line">map.put(<span class="string">"key2"</span>, <span class="string">"value2"</span>);</span><br><span class="line">map.put(<span class="string">"key3"</span>, <span class="string">"value3"</span>);</span><br><span class="line">map.put(<span class="string">"key4"</span>, <span class="string">"value4"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(map.entrySet());</span><br><span class="line">map.compute(<span class="string">"key1"</span>, (key, value) -&gt; key + value);</span><br><span class="line">map.computeIfPresent(<span class="string">"key4"</span>, (key, value)-&gt; <span class="string">"hh"</span>);</span><br><span class="line">map.computeIfAbsent(<span class="string">"key5"</span>, (key)-&gt; Integer.toString(key.length()));</span><br><span class="line">System.out.println(map.toString());</span><br></pre></td></tr></tbody></table></figure>
+  <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span> <span class="token string">"value1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key2"</span><span class="token punctuation">,</span> <span class="token string">"value2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key3"</span><span class="token punctuation">,</span> <span class="token string">"value3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"key4"</span><span class="token punctuation">,</span> <span class="token string">"value4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">entrySet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">compute</span><span class="token punctuation">(</span><span class="token string">"key1"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> key <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">computeIfPresent</span><span class="token punctuation">(</span><span class="token string">"key4"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token operator">-&gt;</span> <span class="token string">"hh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">computeIfAbsent</span><span class="token punctuation">(</span><span class="token string">"key5"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token operator">-&gt;</span> <span class="token class-name">Integer</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>key<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>map<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>  输出为：</p>
-  <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[key1=value1, key2=value2, key3=value3, key4=value4]</span><br><span class="line">{key1=key1value1, key2=value2, key5=<span class="number">4</span>, key3=value3, key4=hh}</span><br></pre></td></tr></tbody></table></figure>
+  <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>key1<span class="token operator">=</span>value1<span class="token punctuation">,</span> key2<span class="token operator">=</span>value2<span class="token punctuation">,</span> key3<span class="token operator">=</span>value3<span class="token punctuation">,</span> key4<span class="token operator">=</span>value4<span class="token punctuation">]</span>
+<span class="token punctuation">{</span>key1<span class="token operator">=</span>key1value1<span class="token punctuation">,</span> key2<span class="token operator">=</span>value2<span class="token punctuation">,</span> key5<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">,</span> key3<span class="token operator">=</span>value3<span class="token punctuation">,</span> key4<span class="token operator">=</span>hh<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
 <h3 id="增-1"><a href="#增-1" class="headerlink" title="增"></a>增</h3><ul>
 <li><code>put(K key, V value)</code></li>
@@ -806,13 +820,13 @@ LinkedLi">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/08/07/ssh/">
+                <a href="/2022/08/07/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="SSH 使用">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Git 命令基本使用">
                         
-                        <span class="card-title">SSH 使用</span>
+                        <span class="card-title">Git 命令基本使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -829,8 +843,8 @@ LinkedLi">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -840,8 +854,8 @@ LinkedLi">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
@@ -908,6 +922,9 @@ LinkedLi">
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

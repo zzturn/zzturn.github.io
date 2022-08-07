@@ -428,6 +428,9 @@ Windows Terminal 新版之后，终于推出了">
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -464,7 +467,7 @@ Windows Terminal 新版之后，终于推出了">
 <p>其中有几个参数可以稍微说明一下：</p>
 <p><code>icon</code> : icon 支持 emoji，所以大家可以像我这样子给每个命令行设置一个有趣的 icon</p>
 <p><code>commandline</code> : 这个是指定 exe 的文件路径，此外说明一下，在博主的配置文件中，Git 的路径是根据自己的电脑路径配置的，大家相应做出更改就行，其中后面加的 <code>--login -i</code> 是避免 Git 中文乱码的情况。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"commandline": "D:\\__Program__\\Git\\bin\\bash.exe --login -i"</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">"commandline": "D:\\__Program__\\Git\\bin\\bash.exe --login -i"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>startingDirectory</code> : 是设置初始默认打开的路径，比如按照博主对 Git 的配置，在 WindowsTerminal 中打开 Git 命令行，就将显示如下界面</p>
 <img src="https://gitee.com/xinlx/pic/raw/master/img/Git%E6%A0%B7%E5%BC%8F.jpg">
@@ -482,11 +485,12 @@ Windows Terminal 新版之后，终于推出了">
 <h2 id="PowerShell"><a href="#PowerShell" class="headerlink" title="PowerShell"></a>PowerShell</h2><p>其实对 PowerShell 的配置，微软同样写了<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup">文档</a>进行说明，但是据博主写作日期（2021.04.13）来看，该文档存在一些过时的东西，需要进行修改，不然会配置失败。</p>
 <p>首先是打开 PowerShell</p>
 <p>输入以下命令安装 <code>posh-git</code> 和 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/docs/"><code>oh-my-posh</code></a></p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Install-Module</span> posh<span class="literal">-git</span> <span class="literal">-Scope</span> CurrentUser</span><br><span class="line"><span class="built_in">Install-Module</span> <span class="built_in">oh</span><span class="literal">-my-posh</span> <span class="literal">-Scope</span> CurrentUser</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">Install-Module</span> posh-git <span class="token operator">-</span>Scope CurrentUser
+<span class="token function">Install-Module</span> oh-my-posh <span class="token operator">-</span>Scope CurrentUser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果有提示，一直按 <code>y</code> 就可以了</p>
 <p>然后再输入</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> <span class="literal">-ExecutionPolicy</span> Bypass</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy Bypass<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这一条命令很重要，不要忘记输入，不然之后会报错，无法成功配置</p>
 <p>接着下载或者复制复制博主的 PowerShell 的<a target="_blank" rel="noopener" href="https://gitee.com/xinlx/pic/raw/master/img/Microsoft.PowerShell_profile.ps1">配置文件</a></p>
@@ -494,19 +498,20 @@ Windows Terminal 新版之后，终于推出了">
 <p>然后将该文件放置于 <code>%userprofile%\Documents\WindowsPowerShell</code> 中（直接将 <code>%userprofile%\Documents\WindowsPowerShell</code> 复制到资源管理器的导航栏就可以到达相应给文件夹下了）（userprofile 是系统变量，存储的是用户文件夹）</p>
 <p>至此美化基本就可以了。</p>
 <p>不过还可以进一步设置，在博主的配置文件中，博主设置了</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-PoshPrompt -Theme emodipt</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Set-PoshPrompt -Theme emodipt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>即使用 emodipt 这个主题（其实自己有做部分修改）</p>
 <p>小伙伴可以根据自己的喜好来设置主题，在 PowerShell 中输入</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-PoshThemes</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Get-PoshThemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>即可查看所有的主题，挑中一款后，输入</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-PoshPrompt -Theme [theme_name]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Set-PoshPrompt -Theme [theme_name]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>可能存在的问题有：</p>
 <p>乱码：这是因为 <a target="_blank" rel="noopener" href="https://ohmyposh.dev/docs/"><code>oh-my-posh</code></a> 使用了 Nerd Fonts 的原因，由于一般 windows 都不会原厂安装这个字体，所以很多字符会显示乱码，这也就是为什么前面要设置 <code>fontFace</code> 即字体的原因了。</p>
 <p>博主使用了</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"fontFace": "MesloLGL NF",</span><br><span class="line">"fontFace": "Cascadia Code PL"</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">"fontFace": "MesloLGL NF",
+"fontFace": "Cascadia Code PL"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><code>MesloLGL NF</code> 字体可以通过这个<a target="_blank" rel="noopener" href="https://gitee.com/xinlx/pic/raw/master/img/Meslo.zip">🔗链接</a>下载，<code>Cascadia Code PL</code> 字体可以通过这个<a target="_blank" rel="noopener" href="https://gitee.com/xinlx/pic/raw/master/img/CascadiaCode-2102.25.zip">🔗链接</a>下载</p>
 <p>在两个文件中选择相应字体安装即可，不行的话，就多安装几个试试。</p>
@@ -779,6 +784,9 @@ Windows Terminal 新版之后，终于推出了">
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

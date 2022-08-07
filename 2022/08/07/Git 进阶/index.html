@@ -411,6 +411,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -428,49 +431,74 @@
 </div>
 
 
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch branch_name [other_branch_name | commit]</span><br><span class="line">git switch -c branch_name [other_branch_name | commit]</span><br><span class="line">git checkout -b branch_name [other_branch_name | commit]</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch branch_name <span class="token punctuation">[</span>other_branch_name <span class="token operator">|</span> commit<span class="token punctuation">]</span>
+<span class="token function">git</span> switch -c branch_name <span class="token punctuation">[</span>other_branch_name <span class="token operator">|</span> commit<span class="token punctuation">]</span>
+<span class="token function">git</span> checkout -b branch_name <span class="token punctuation">[</span>other_branch_name <span class="token operator">|</span> commit<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>注意：</p>
 <p>第一行只是创建一个分支，但后两个命令则是创建并切换到这个分支</p>
 <p>后面可以接其他分支名或者提交</p>
 </blockquote>
-<h2 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch </span><br><span class="line">git branch -a</span><br><span class="line"><span class="comment"># 加上 -a 后查看所有分支</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch 
+<span class="token function">git</span> branch -a
+<span class="token comment"># 加上 -a 后查看所有分支</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch -d [branch_name]</span><br><span class="line">git branch -D [branch_name]</span><br><span class="line"><span class="comment"># 使用 -D 强制删除</span></span><br><span class="line">git push origin --delete [branch_name]</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch -d <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token function">git</span> branch -D <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 使用 -D 强制删除</span>
+<span class="token function">git</span> push origin --delete <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 删除远程分支</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="更改分支名"><a href="#更改分支名" class="headerlink" title="更改分支名"></a>更改分支名</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m [branch_name] [new_branch_name]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="更改分支名"><a href="#更改分支名" class="headerlink" title="更改分支名"></a>更改分支名</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch -m <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span> <span class="token punctuation">[</span>new_branch_name<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git switch [branch_name]</span><br><span class="line">git checkout [branch_name]</span><br><span class="line"><span class="comment"># 以上两个皆可</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> switch <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token function">git</span> checkout <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 以上两个皆可</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><p><code>git merge</code></p>
 <p>合并分支</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge dev</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>git rebase</code></p>
 <p>用于合并分支，同时讲提交变为线性</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout [branch_1]</span><br><span class="line">git rebase [branch_2]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token punctuation">[</span>branch_1<span class="token punctuation">]</span>
+<span class="token function">git</span> rebase <span class="token punctuation">[</span>branch_2<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><code>git rebase -i</code></p>
 <p>交互性</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout [branch_1]</span><br><span class="line">git rebase -i HEAD~5</span><br><span class="line"><span class="comment"># 然后可以在文件中编辑要合并的提交，同时还可以编辑提交的先后顺序</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token punctuation">[</span>branch_1<span class="token punctuation">]</span>
+<span class="token function">git</span> rebase -i HEAD~5
+<span class="token comment"># 然后可以在文件中编辑要合并的提交，同时还可以编辑提交的先后顺序</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="其他相关"><a href="#其他相关" class="headerlink" title="其他相关"></a>其他相关</h2><p><code>git branch -f</code></p>
 <p>强制将某个分支放到某个提交上</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -f [branch_2] [commit_2]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch -f <span class="token punctuation">[</span>branch_2<span class="token punctuation">]</span> <span class="token punctuation">[</span>commit_2<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
 <p><code>git cherry-pick</code></p>
 <p>合并提交</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick [commit_1] [commit_2] ...</span><br><span class="line"><span class="comment"># 合并多个提交</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>commit_1<span class="token punctuation">]</span> <span class="token punctuation">[</span>commit_2<span class="token punctuation">]</span> <span class="token punctuation">..</span>.
+<span class="token comment"># 合并多个提交</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
 <h1 id="commit相关"><a href="#commit相关" class="headerlink" title="commit相关"></a>commit相关</h1><h2 id="HEAD-指针"><a href="#HEAD-指针" class="headerlink" title="HEAD 指针"></a><code>HEAD</code> 指针</h2><p><code>~</code>, <code>^</code></p>
 <p><code>~</code> 后可以接数字，表示 HEAD 前第几个提交</p>
 <p>如：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">*   46dc76c (HEAD -&gt; master) Merge branch <span class="string">'b2'</span></span><br><span class="line">|\  </span><br><span class="line">| * 4bb98ef (b2) master sixth</span><br><span class="line">* | 966825b master nine after change</span><br><span class="line">* | 2039566 master eight</span><br><span class="line">* | 35a14dd (b3) master seven</span><br><span class="line">* | 1f87053 (b1) master sixth</span><br><span class="line">* | 8906bd9 master fifth after change</span><br><span class="line">|/  </span><br><span class="line">* e2e358e b1 forth</span><br><span class="line">* 02f6154 b1 third</span><br><span class="line">* be7efa6 master first</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">*   46dc76c <span class="token punctuation">(</span>HEAD -<span class="token operator">&gt;</span> master<span class="token punctuation">)</span> Merge branch <span class="token string">'b2'</span>
+<span class="token operator">|</span><span class="token punctuation">\</span>  
+<span class="token operator">|</span> * 4bb98ef <span class="token punctuation">(</span>b2<span class="token punctuation">)</span> master sixth
+* <span class="token operator">|</span> 966825b master nine after change
+* <span class="token operator">|</span> <span class="token number">2039566</span> master eight
+* <span class="token operator">|</span> 35a14dd <span class="token punctuation">(</span>b3<span class="token punctuation">)</span> master seven
+* <span class="token operator">|</span> 1f87053 <span class="token punctuation">(</span>b1<span class="token punctuation">)</span> master sixth
+* <span class="token operator">|</span> 8906bd9 master fifth after change
+<span class="token operator">|</span>/  
+* e2e358e b1 forth
+* 02f6154 b1 third
+* be7efa6 master first<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如上所示</p>
 <p>当前 HEAD 在 <code>46dc76c</code> 这个提交，<code>HEAD~3</code> 就表示 <code>35a14dd</code> 这个提交, <code>HEAD^</code> 表示 <code>966825b</code> 这个提交，而 <code>HEAD^2</code> 表示 <code>4bb98ef</code> 这个提交。</p>
@@ -480,52 +508,71 @@
 <p>Ps: 如果执行 <code>git checkout HEAD^2~2</code> 之后，提示 <code>HEAD detached at [commit_id]</code>, 可以通过 <code>git switch master</code> 来将 <code>HEAD</code> 重新指向 master 分支 </p>
 </blockquote>
 <h2 id="git-commit-amend"><a href="#git-commit-amend" class="headerlink" title="git commit --amend"></a><code>git commit --amend</code></h2><p>修改提交的注释</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br><span class="line"><span class="comment"># 修改最近一次提交的注释</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit --amend
+<span class="token comment"># 修改最近一次提交的注释</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
 
 
-<h1 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h1><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 撤销提交到暂存区</span></span><br><span class="line">git restore --staged [file_name]</span><br><span class="line"><span class="comment"># 撤销工作区的更改</span></span><br><span class="line">git restore [file_name]</span><br><span class="line"><span class="comment"># 这两条命令在执行 git status 的时候都会自动提示的</span></span><br></pre></td></tr></tbody></table></figure>
+<h1 id="撤销更改"><a href="#撤销更改" class="headerlink" title="撤销更改"></a>撤销更改</h1><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 撤销提交到暂存区</span>
+<span class="token function">git</span> restore --staged <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+<span class="token comment"># 撤销工作区的更改</span>
+<span class="token function">git</span> restore <span class="token punctuation">[</span>file_name<span class="token punctuation">]</span>
+<span class="token comment"># 这两条命令在执行 git status 的时候都会自动提示的</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 <h1 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h1><h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a><code>git reset</code></h2><p>相当于改写了历史，对远程分支无效（暂未验证 <code>git push -f</code> 是否也无效）</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset --&lt;hard | mixed | soft&gt; [commit_id]</span><br><span class="line"><span class="comment"># soft 表示将这次提交之后的所有更改放入暂存区</span></span><br><span class="line"><span class="comment"># mixed 表示放入工作区</span></span><br><span class="line"><span class="comment"># hard 表示放弃所有提交，即直接删除了之间的所有提交</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset --<span class="token operator">&lt;</span>hard <span class="token operator">|</span> mixed <span class="token operator">|</span> soft<span class="token operator">&gt;</span> <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span>
+<span class="token comment"># soft 表示将这次提交之后的所有更改放入暂存区</span>
+<span class="token comment"># mixed 表示放入工作区</span>
+<span class="token comment"># hard 表示放弃所有提交，即直接删除了之间的所有提交</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="git-revert"><a href="#git-revert" class="headerlink" title="git revert"></a><code>git revert</code></h2><p>新建一个提交，用以撤销之前的提交的修改</p>
 <p>例如：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 636729f (HEAD -&gt; bt4) bt4 nine change 4</span><br><span class="line">* d23a742 bt4 nine change 3</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">* 636729f (HEAD -&gt; bt4) bt4 nine change 4
+* d23a742 bt4 nine change 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>对于上述提交历史，</p>
 <p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert HEAD^</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> revert HEAD^<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>后，结果为</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* f03f4e4 (HEAD -&gt; bt4) Revert "bt4 nine change 3"</span><br><span class="line">* 636729f bt4 nine change 4</span><br><span class="line">* d23a742 bt4 nine change 3</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">* f03f4e4 (HEAD -&gt; bt4) Revert "bt4 nine change 3"
+* 636729f bt4 nine change 4
+* d23a742 bt4 nine change 3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="撤销版本回退"><a href="#撤销版本回退" class="headerlink" title="撤销版本回退"></a>撤销版本回退</h2><blockquote>
 <p>对于 <code>git reset</code> 误删的提交，可以通过 <code>git reflog</code> 命令查看历史，然后根据提交号，进行 <code>git reset</code> 即可</p>
 <p>例如：</p>
 <p>对于如下 commit log</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* b1ec67d (HEAD -&gt; master) master change restfile 2</span><br><span class="line">* a3bbf0b master change resetfile 1</span><br><span class="line">* 653c57e master add resetfile</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">* b1ec67d (HEAD -&gt; master) master change restfile 2
+* a3bbf0b master change resetfile 1
+* 653c57e master add resetfile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD^^</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset HEAD^^<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>后得到如下 commit log</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* 653c57e (HEAD -&gt; master) master add resetfile</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">* 653c57e (HEAD -&gt; master) master add resetfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>如果此时，要再次恢复到 <code>b1ec67d</code> 这个提交</p>
 <p>则</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reflog -n 5</span><br><span class="line"><span class="comment"># 此处 -n 5 只是限制输出 5 行到作用</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reflog -n <span class="token number">5</span>
+<span class="token comment"># 此处 -n 5 只是限制输出 5 行到作用</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>得到如下输出</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">653c57e (HEAD -&gt; master) HEAD@{0}: reset: moving to HEAD^^</span><br><span class="line">b1ec67d HEAD@{1}: commit: master change restfile 2</span><br><span class="line">a3bbf0b HEAD@{2}: commit: master change resetfile 1</span><br><span class="line">653c57e (HEAD -&gt; master) HEAD@{3}: commit: master add resetfile</span><br><span class="line">46dc76c (bt5) HEAD@{4}: checkout: moving from bt4 to master</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">653c57e (HEAD -&gt; master) HEAD@{0}: reset: moving to HEAD^^
+b1ec67d HEAD@{1}: commit: master change restfile 2
+a3bbf0b HEAD@{2}: commit: master change resetfile 1
+653c57e (HEAD -&gt; master) HEAD@{3}: commit: master add resetfile
+46dc76c (bt5) HEAD@{4}: checkout: moving from bt4 to master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>可以看到曾经提交的 commit id</p>
 <p>此时执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard b1ec</span><br><span class="line"><span class="comment"># 此处的 --hard 只是个人推荐吧，因为用 --soft或者 --mixed又会在工作区或者暂存区有更改，比较麻烦</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset --hard b1ec
+<span class="token comment"># 此处的 --hard 只是个人推荐吧，因为用 --soft或者 --mixed又会在工作区或者暂存区有更改，比较麻烦</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>即可恢复。</p>
 </blockquote>
@@ -534,12 +581,12 @@
 <p>另外就是要学会看懂输出结果，注意以哪个文件为基准进行比较的。注意分辨！！</p>
 <ul>
 <li><p><strong>比较工作区与暂存区</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以暂存区为基准，不加任何参数</p>
 </li>
 <li><p><strong>比较暂存区与最新本地仓库</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached [&lt;path&gt;...]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span> --cached <span class="token punctuation">[</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以本地仓库为基准</p>
 <blockquote>
@@ -547,64 +594,130 @@
 </blockquote>
 </li>
 <li><p><strong>比较工作区与最新本地版本库</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff HEAD [&lt;path&gt;...]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span> HEAD <span class="token punctuation">[</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p><strong>比较工作区与指定 commit_id 的差异</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff [commit_id] [&lt;path&gt;...]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span> <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以指定 commit 为基准</p>
 </li>
 <li><p><strong>比较暂存区与指定 commit-id 的差异</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached [commit_id] [&lt;path&gt;...]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span> --cached <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以指定 commit 为基准</p>
 </li>
 <li><p><strong>比较两个 commit-id 的差异</strong></p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff [commit_id] [commit_id] [&lt;path&gt;...]</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span> <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span> <span class="token punctuation">[</span>commit_id<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>path<span class="token operator">&gt;</span><span class="token punctuation">..</span>.<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>以前一个 commit 为基准</p>
 </li>
 </ul>
 <p>如执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> abc &gt; seven</span><br><span class="line">git diff</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> abc <span class="token operator">&gt;</span> seven
+<span class="token function">git</span> <span class="token function">diff</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>得到如下输出</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in seven.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..8baef1b 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+abc</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">warning: LF will be replaced by CRLF in seven.
+The file will have its original line endings in your working directory
+diff --git a/seven b/seven
+index e69de29..8baef1b 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>接着上面的更改执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git diff --staged</span><br><span class="line"><span class="comment"># --staged 与 --cached 效果一样</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> <span class="token function">diff</span> --staged
+<span class="token comment"># --staged 与 --cached 效果一样</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>得到如下输出</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..8baef1b 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+abc</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">diff --git a/seven b/seven
+index e69de29..8baef1b 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>而此时如果执行</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">diff</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>则没有输出</p>
 <p>接着执行</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo bcd &gt; seven</span><br><span class="line">git diff HEAD</span><br><span class="line">git diff </span><br><span class="line">git diff --staged</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">echo bcd &gt; seven
+git diff HEAD
+git diff 
+git diff --staged<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>git diff HEAD</code> 得到</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in seven.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..a48a3b3 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+bcd</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">warning: LF will be replaced by CRLF in seven.
+The file will have its original line endings in your working directory
+diff --git a/seven b/seven
+index e69de29..a48a3b3 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++bcd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>git diff</code> 得到 </p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in seven.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index 8baef1b..a48a3b3 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-abc</span><br><span class="line">+bcd</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">warning: LF will be replaced by CRLF in seven.
+The file will have its original line endings in your working directory
+diff --git a/seven b/seven
+index 8baef1b..a48a3b3 100644
+--- a/seven
++++ b/seven
+@@ -1 +1 @@
+-abc
++bcd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>git diff --staged</code> 得到</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xin@xins-MacBook-Pro ~/Documents/gg: git diff --staged</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..8baef1b 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+abc</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">xin@xins-MacBook-Pro ~/Documents/gg: git diff --staged
+diff --git a/seven b/seven
+index e69de29..8baef1b 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>git diff HEAD^</code> 得到</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">warning: LF will be replaced by CRLF in seven.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a/resetfile b/resetfile</span><br><span class="line">index 802992c..ce8018b 100644</span><br><span class="line">--- a/resetfile</span><br><span class="line">+++ b/resetfile</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-Hello world</span><br><span class="line">+Hi world</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..a48a3b3 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+bcd</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">warning: LF will be replaced by CRLF in seven.
+The file will have its original line endings in your working directory
+diff --git a/resetfile b/resetfile
+index 802992c..ce8018b 100644
+--- a/resetfile
++++ b/resetfile
+@@ -1 +1 @@
+-Hello world
++Hi world
+diff --git a/seven b/seven
+index e69de29..a48a3b3 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++bcd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><code>git diff --staged HEAD^</code> 得到</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/resetfile b/resetfile</span><br><span class="line">index 802992c..ce8018b 100644</span><br><span class="line">--- a/resetfile</span><br><span class="line">+++ b/resetfile</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-Hello world</span><br><span class="line">+Hi world</span><br><span class="line">diff --git a/seven b/seven</span><br><span class="line">index e69de29..8baef1b 100644</span><br><span class="line">--- a/seven</span><br><span class="line">+++ b/seven</span><br><span class="line">@@ -0,0 +1 @@</span><br><span class="line">+abc</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">diff --git a/resetfile b/resetfile
+index 802992c..ce8018b 100644
+--- a/resetfile
++++ b/resetfile
+@@ -1 +1 @@
+-Hello world
++Hi world
+diff --git a/seven b/seven
+index e69de29..8baef1b 100644
+--- a/seven
++++ b/seven
+@@ -0,0 +1 @@
++abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
 
 
 <h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><p><code>git show [commit_id]:[filename]</code> 用于查看某次提交中某个文件的内容</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git show a3bb:resetfile</span><br><span class="line"><span class="comment"># 输出 Hello world</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> show a3bb:resetfile
+<span class="token comment"># 输出 Hello world</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 
@@ -757,17 +870,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/08/07/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                <a href="/2022/08/07/Git%20%E8%BF%9B%E9%98%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Git 命令基本使用">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git 进阶使用">
                         
-                        <span class="card-title">Git 命令基本使用</span>
+                        <span class="card-title">Git 进阶使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -777,9 +891,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -792,6 +906,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -863,6 +978,9 @@
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

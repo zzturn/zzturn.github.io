@@ -408,6 +408,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -420,7 +423,11 @@
 <li><p>安装 Git</p>
 </li>
 <li><p>配置用户名、密码</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">"[username]"</span></span><br><span class="line">git config user.email <span class="string">"[useremail]"</span></span><br><span class="line"><span class="comment"># username 替换为自己的用户名</span></span><br><span class="line"><span class="comment"># useremail 替换为自己的邮箱</span></span><br><span class="line"><span class="comment"># 如 git config user.name "luoxin"</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"[username]"</span>
+<span class="token function">git</span> config user.email <span class="token string">"[useremail]"</span>
+<span class="token comment"># username 替换为自己的用户名</span>
+<span class="token comment"># useremail 替换为自己的邮箱</span>
+<span class="token comment"># 如 git config user.name "luoxin"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>注意：[xxx] 表示此处需要根据自己的实际情况来填写，下同</p>
@@ -429,7 +436,7 @@
 <li><p>配置 ssh 密钥（可选）</p>
 <p>首先说明这一步是可选的。</p>
 <p>其实我本人在日常中也没怎么用，直接用的 http。但是前两天有个项目要求用 ssh，这次刚好写上去</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -c <span class="string">"[useremail]"</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -c <span class="token string">"[useremail]"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>会让你输入存放 key（公钥）的路径，一般选默认的即可。</p>
 <p>接着输入 <code>passphrase</code>，也就是私钥，这个可设可不设，设置的话，以后每次 <code>git push</code> 都需要求再次输入。</p>
@@ -439,15 +446,60 @@
 <p>最后在 <code>Title</code> 随便输入一些内容，在<code>Key</code> 中输入刚刚复制的 <code>id_rsa.pub</code> 里的内容。</p>
 </li>
 <li><p>克隆仓库</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> [repository_address] [folder_name]</span><br><span class="line"><span class="comment"># repository_address 替换为仓库的 url 即可</span></span><br><span class="line"><span class="comment"># folder_name 替换为自己想放代码的文件夹，也可以不设置，就默认在当前目录下新建一个与 repository 同名的文件夹</span></span><br><span class="line"><span class="comment"># 如 git clone https://github.com/luoxin971/Study-notes.git</span></span><br></pre></td></tr></tbody></table></figure></li>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token punctuation">[</span>repository_address<span class="token punctuation">]</span> <span class="token punctuation">[</span>folder_name<span class="token punctuation">]</span>
+<span class="token comment"># repository_address 替换为仓库的 url 即可</span>
+<span class="token comment"># folder_name 替换为自己想放代码的文件夹，也可以不设置，就默认在当前目录下新建一个与 repository 同名的文件夹</span>
+<span class="token comment"># 如 git clone https://github.com/luoxin971/Study-notes.git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="基本代码提交流程"><a href="#基本代码提交流程" class="headerlink" title="基本代码提交流程"></a>基本代码提交流程</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化，注意要在空文件夹里，如果不是新建一个项目，则可以用 git clone 拉代码</span></span><br><span class="line">git init</span><br><span class="line"><span class="comment"># 将文件从工作区添加到暂存区</span></span><br><span class="line">git add [filename]</span><br><span class="line"><span class="comment"># 将暂存区的所有内容提交到当前分支，commit_info 替换为对这次提交的说明，具体可在网上搜 git 提交规范</span></span><br><span class="line">git commit -m <span class="string">"[commit_info]"</span></span><br><span class="line"><span class="comment"># 将当前分支推送到远程分支</span></span><br><span class="line">git push origin [branch_name]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="基本代码提交流程"><a href="#基本代码提交流程" class="headerlink" title="基本代码提交流程"></a>基本代码提交流程</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化，注意要在空文件夹里，如果不是新建一个项目，则可以用 git clone 拉代码</span>
+<span class="token function">git</span> init
+<span class="token comment"># 将文件从工作区添加到暂存区</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+<span class="token comment"># 将暂存区的所有内容提交到当前分支，commit_info 替换为对这次提交的说明，具体可在网上搜 git 提交规范</span>
+<span class="token function">git</span> commit -m <span class="token string">"[commit_info]"</span>
+<span class="token comment"># 将当前分支推送到远程分支</span>
+<span class="token function">git</span> push origin <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>  <code>git add</code>, <code>git commit</code>, <code>git push</code> 三步就是每次提交代码的基本步骤</p>
 <p>  当然，如果没有远程仓库的话，<code>git push</code> 就无从说起了</p>
 </blockquote>
-<h3 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前 git 状态</span></span><br><span class="line">git status</span><br><span class="line"><span class="comment"># 查看 git 提交历史，后面可以接其他参数，我个人常用的有，git log --oneline, git log -n 10</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 以下是分支操作</span></span><br><span class="line"><span class="comment"># 查看分支，后接其他参数，可实现其他与分支相关的命令</span></span><br><span class="line">git branch</span><br><span class="line"><span class="comment"># 切换分支</span></span><br><span class="line">git switch/checkout [branch_name]</span><br><span class="line"><span class="comment"># 创建分支，以下两个都可以</span></span><br><span class="line">git checkout -b [new_branch_name]</span><br><span class="line">git switch -c [new_branch_name]</span><br><span class="line"><span class="comment"># 合并分支</span></span><br><span class="line">git merge [other_branch_name]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从远程分支拉取代码</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 放弃更改，其实有很多的用法，在此只介绍两个常用的</span></span><br><span class="line">git restore [filename]</span><br><span class="line"><span class="comment"># 将暂存区的文件返回到工作区</span></span><br><span class="line">git restore --staged [filename]</span><br><span class="line"></span><br><span class="line"><span class="comment">## 打草稿，（我也不知道中文该怎么说/(ㄒoㄒ)/~~）</span></span><br><span class="line"><span class="comment"># 将当前的更改保存，-m 后的 stash_info 类似于前面的 git commit -m "xxx"，可以不写，但推荐加加上，方便分辨</span></span><br><span class="line">git stash -m <span class="string">"[stash_info]"</span></span><br><span class="line"><span class="comment"># 显示所有的 stash</span></span><br><span class="line">git stash list</span><br><span class="line"><span class="comment"># 应用 stash，其中 stash_num 为上述 git stash list 中显示的各 stash 的序号</span></span><br><span class="line">git stash apply [stash_num]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其实还有 git diff，但是我一般都用 vscode 看两者的差别，所以用的不多，况且用命令行显示这个实在是不太直观</span></span><br></pre></td></tr></tbody></table></figure>
+<h3 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看当前 git 状态</span>
+<span class="token function">git</span> status
+<span class="token comment"># 查看 git 提交历史，后面可以接其他参数，我个人常用的有，git log --oneline, git log -n 10</span>
+<span class="token function">git</span> log
+
+
+<span class="token comment">## 以下是分支操作</span>
+<span class="token comment"># 查看分支，后接其他参数，可实现其他与分支相关的命令</span>
+<span class="token function">git</span> branch
+<span class="token comment"># 切换分支</span>
+<span class="token function">git</span> switch/checkout <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 创建分支，以下两个都可以</span>
+<span class="token function">git</span> checkout -b <span class="token punctuation">[</span>new_branch_name<span class="token punctuation">]</span>
+<span class="token function">git</span> switch -c <span class="token punctuation">[</span>new_branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 合并分支</span>
+<span class="token function">git</span> merge <span class="token punctuation">[</span>other_branch_name<span class="token punctuation">]</span>
+
+
+<span class="token comment"># 从远程分支拉取代码</span>
+<span class="token function">git</span> pull
+
+
+<span class="token comment"># 放弃更改，其实有很多的用法，在此只介绍两个常用的</span>
+<span class="token function">git</span> restore <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+<span class="token comment"># 将暂存区的文件返回到工作区</span>
+<span class="token function">git</span> restore --staged <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+
+<span class="token comment">## 打草稿，（我也不知道中文该怎么说/(ㄒoㄒ)/~~）</span>
+<span class="token comment"># 将当前的更改保存，-m 后的 stash_info 类似于前面的 git commit -m "xxx"，可以不写，但推荐加加上，方便分辨</span>
+<span class="token function">git</span> stash -m <span class="token string">"[stash_info]"</span>
+<span class="token comment"># 显示所有的 stash</span>
+<span class="token function">git</span> stash list
+<span class="token comment"># 应用 stash，其中 stash_num 为上述 git stash list 中显示的各 stash 的序号</span>
+<span class="token function">git</span> stash apply <span class="token punctuation">[</span>stash_num<span class="token punctuation">]</span>
+
+<span class="token comment"># 其实还有 git diff，但是我一般都用 vscode 看两者的差别，所以用的不多，况且用命令行显示这个实在是不太直观</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -598,18 +650,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/08/07/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+                <a href="/2022/08/07/ssh/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Git 命令基本使用">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="SSH 使用">
                         
-                        <span class="card-title">Git 命令基本使用</span>
+                        <span class="card-title">SSH 使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -619,27 +670,26 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
@@ -653,13 +703,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/08/07/Git%20%E8%BF%9B%E9%98%B6/">
+                <a href="/2021/05/17/Java%E5%AE%B9%E5%99%A8%E7%B1%BB/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git 进阶使用">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Java容器类">
                         
-                        <span class="card-title">Git 进阶使用</span>
+                        <span class="card-title">Java容器类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -670,14 +720,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -687,8 +737,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">Java 基础</span>
                     </a>
                     
                 </div>
@@ -706,6 +756,9 @@
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

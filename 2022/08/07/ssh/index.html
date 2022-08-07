@@ -411,6 +411,9 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -428,7 +431,7 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
 <h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a><code>ssh-keygen</code></h2><p>OpenSSH authentication key utility</p>
 <p>用于生成 ssh key 的</p>
 <p>笔者一开始接触 ssh 是在 <a target="_blank" rel="noopener" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">github 配置 ssh</a> 里面：</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ssh-keygen -t ed25519 -C <span class="string">"your_email@example.com"</span> -f ~/.ssh/ed25519_id</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ ssh-keygen -t ed25519 -C <span class="token string">"your_email@example.com"</span> -f ~/.ssh/ed25519_id<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>ssh-keygen</code> 主要有三个选项 <code>-t</code>, <code>-C</code>, <code>-f</code></p>
 <table>
@@ -453,32 +456,60 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
 </tbody></table>
 <p>执行上述命令后，会让你输入 <code>phraseKey</code>，最后就会在 <code>~/.ssh</code> 里生成一个名为 <code>ed25519_id</code> 以及 <code>ed25519_id.pub</code> 的文件 </p>
 <h2 id="ssh-及配置文件"><a href="#ssh-及配置文件" class="headerlink" title="ssh 及配置文件"></a><code>ssh</code> 及配置文件</h2><p>OpenSSH remote login client</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ssh root@1.2.3.4</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">ssh</span> root@1.2.3.4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这个命令没什么特别需要说明的，主要用法就是这个了，现在看看配置文件。</p>
 <blockquote>
 <p>  主要参考 <a target="_blank" rel="noopener" href="https://linuxize.com/post/using-the-ssh-config-file/">Using the SSH Config File</a></p>
 </blockquote>
 <p>如果需要 <code>config</code> 文件，一般是要自己在 <code>~/.ssh</code> 里新建一个的</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">touch</span> ~/.ssh/config</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">touch</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><code>config</code> 文件格式如下</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host japan</span><br><span class="line">    HostName 45.76.219.37</span><br><span class="line">    User root</span><br><span class="line">    IdentityFile ~/.ssh/debian_id</span><br><span class="line"></span><br><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">Host japan
+    HostName 45.76.219.37
+    User root
+    IdentityFile ~/.ssh/debian_id
+
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>缩进只是为了可读性，并不是必须的，同时 config 文件忽略 <code>Host</code>, <code>HostName</code> 等的大小写。</p>
 <p><code>Host</code> 支持通配符，同时一个地址支持匹配多个 Host，按顺序最先匹配到的 option 具有最高优先级。具体可见 <a target="_blank" rel="noopener" href="https://linuxize.com/post/using-the-ssh-config-file/">Using the SSH Config File</a></p>
 <p>如上我们配置了两个 <code>Host</code>，于是我们接下来就可以这么使用了</p>
-<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ssh japan	// 等同于 ssh root@45.76.219.37</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">ssh</span> japan	// 等同于 <span class="token function">ssh</span> root@45.76.219.37<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>接着输入远程服务器的密码就可以了。如果希望每次登陆的时候不用输入远端的密码，可以参考后面的 <a href="#ssh-copy-id"><code>ssh-copy-id</code></a></p>
 <p>再来说一下 git，config 在 git 中具体使用场景就是配置多个 git 用户，如果想要在电脑上同时使用公司以及个人的git账号就可以</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># gitee</span><br><span class="line">Host gitee.com</span><br><span class="line">    HostName gitee.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/gitee_id</span><br><span class="line">    </span><br><span class="line"># github</span><br><span class="line">Host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/github_id</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none"># gitee
+Host gitee.com
+    HostName gitee.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/gitee_id
+    
+# github
+Host github.com
+    HostName github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/github_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如果公司和个人的账户都需要使用同一个网站，比如 <code>github.com</code>, 则可以</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># person</span><br><span class="line">host github.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line"># company</span><br><span class="line">host github_company.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/debian_id</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none"># person
+host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa
+
+# company
+host github_company.com
+    HostName github.com
+    IdentityFile ~/.ssh/debian_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>然后在使用中就可以</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// person</span><br><span class="line">$ git <span class="built_in">clone</span> git@github.com:luoxin971/Study-notes.git</span><br><span class="line">// company</span><br><span class="line">$ git <span class="built_in">clone</span> git@github_company.com:luoxin971/Study-notes.git</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">// person
+$ <span class="token function">git</span> clone git@github.com:luoxin971/Study-notes.git
+// company
+$ <span class="token function">git</span> clone git@github_company.com:luoxin971/Study-notes.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -486,14 +517,16 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
 <blockquote>
 <p>  主要参考 <a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-setup-passwordless-ssh-login/">How to Setup Passwordless SSH Login</a></p>
 </blockquote>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id root@1.2.3.4</span><br><span class="line">// 如果之前在 config 里面配置了 Host 等，还可以</span><br><span class="line">$ ssh-copy-id japan</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ ssh-copy-id root@1.2.3.4
+// 如果之前在 config 里面配置了 Host 等，还可以
+$ ssh-copy-id japan<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><code>-i</code> 选项可以指定私钥文件</p>
 <p>接着输入服务器密码，之后服务器 <code>~/.ssh</code> 下会有一个 <code>authorized_keys</code> 的文件（如下），记录着刚刚指定的私钥所对应的公钥</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcXwTy8Bda+vmtmpFS2cuySYFnMBQnea6uFUrLwctRb root@debian</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcXwTy8Bda+vmtmpFS2cuySYFnMBQnea6uFUrLwctRb root@debian<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>之后每次登录远程服务器就只需要</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh japan</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">ssh</span> japan<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>然后输入 <code>phraseKey</code> 即可，如果之前设置 <code>phraseKey</code> 为空，则就无需任何密码了。</p>
 
@@ -695,13 +728,13 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/17/Java%E5%AE%B9%E5%99%A8%E7%B1%BB/">
+                <a href="/2022/08/07/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Java容器类">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Git 命令基本使用">
                         
-                        <span class="card-title">Java容器类</span>
+                        <span class="card-title">Git 命令基本使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -712,14 +745,14 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -729,8 +762,8 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">
-                        <span class="chip bg-color">Java 基础</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
@@ -748,6 +781,9 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->

@@ -411,6 +411,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
 
         
 
@@ -430,7 +433,9 @@
 <li><p>按住 Win + x 键，打开 <code>Windows PowerShell管理员</code> ，或者 Win + s 键，输出 <code>Windows PowerShell</code> 打开</p>
 </li>
 <li><p>依次输入以下命令，并回车</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node <span class="literal">-v</span></span><br><span class="line">npm <span class="literal">-v</span></span><br><span class="line">git</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">node <span class="token operator">-</span>v
+npm <span class="token operator">-</span>v
+git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>如果每一步都正常有输出，那就下一步</p>
 <blockquote>
@@ -452,7 +457,8 @@
 </ol>
 <h2 id="开始部署"><a href="#开始部署" class="headerlink" title="开始部署"></a>开始部署</h2><ol>
 <li><p>在 <code>PowerShell</code> 中依次执行</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install webpack <span class="literal">-g</span></span><br><span class="line">npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">npm install webpack <span class="token operator">-</span>g
+npm install <span class="token operator">-</span>g hexo-<span class="token function">cli</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果有提示 error，自行<a target="_blank" rel="noopener" href="https://www.baidu.com/">百度</a></p>
 </li>
@@ -460,7 +466,7 @@
 <p>然后在该文件夹内部上方的导航栏里，输入 <code>PowerShell</code> 并回车，或者一只手按住 shift 键，一只手右击文件夹内空白区域，选择 <code>在此处打开 PowerShell</code>，或者选择 <code>在此处打开 cmd</code></p>
 </li>
 <li><p>接着在上一步弹出的命令行窗口中，输入</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></tbody></table></figure></li>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">hexo init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
 <p>​    </p>
 <h2 id="绑定-Git-仓库"><a href="#绑定-Git-仓库" class="headerlink" title="绑定 Git 仓库"></a>绑定 Git 仓库</h2><p>在前面已经提到过，要注册 <a target="_blank" rel="noopener" href="https://github.com/">GitHub</a> 账号，现在就需要这个了</p>
@@ -483,7 +489,8 @@
 <blockquote>
 <p>  <span style="color:purple">在执行 <code>git commit</code> 或者 <code>git push</code> 这一行命令的时候，会让你输入 email，username </span></p>
 <p>  按照提示，执行 </p>
-  <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email 'your email'</span><br><span class="line">git config --global user.username 'your username'</span><br></pre></td></tr></tbody></table></figure>
+  <pre class="line-numbers language-git" data-language="git"><code class="language-git">git config --global user.email <span class="token string">'your email'</span>
+git config --global user.username <span class="token string">'your username'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>   其中引号内的部分，分别替换成注册 GitHub 时用的，邮箱和用户名即可</p>
 <p>  之后还会有登陆验证，正常操作就行</p>
@@ -492,7 +499,8 @@
 </li>
 <li><p>此时，在切换回先前打开的 PowerShell 或者 cmd 界面，（貌似 Git 命令行执行 <code>hexo</code> 需要重新配置，所以此处没有采用）</p>
 <p>依次输入</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">hexo g
+hexo s<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>如果每一步都运行正确，那么在最后应该会显示一行</p>
 <blockquote>
@@ -506,7 +514,10 @@
 </ol>
 <h2 id="将-Hexo-部署到-Github"><a href="#将-Hexo-部署到-Github" class="headerlink" title="将 Hexo 部署到 Github"></a>将 Hexo 部署到 Github</h2><ol>
 <li><p>打开上面新建的 Blog 文件夹，用记事本打开里面的 <code>_config.yml</code> 文件，在文件最后添加以下内容</p>
-<figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: &lt;url&gt;  #你的仓库地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">deploy:
+  type: git
+  repository: &lt;url&gt;  #你的仓库地址
+  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>注意要将上述的 &lt;url&gt; 替换为 你的仓库地址，应该是形如这个样子</p>
 <p><code>https://github.com/xxx/xxx.github.io.git</code></p>
@@ -514,10 +525,12 @@
 <p>注意冒号后面都要有一个空格</p>
 </li>
 <li><p>再回到刚刚打开的 PowerShell 命令行，输入</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo<span class="literal">-deployer-git</span> <span class="literal">--save</span></span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">npm install hexo-deployer-git <span class="token operator">--</span>save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>最后依次输入</p>
-<figure class="highlight powershell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">hexo clean
+hexo g
+hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>执行完毕后，打开 <code>https://xxx.github.io</code> 就可以看到你的博客界面了。（将 <code>xxx</code> 替换成你的用户名）</p>
 <p>Congratulation！</p>
@@ -532,7 +545,7 @@
 </blockquote>
 <ol>
 <li><p>首先打开命令行工具，``Powershell<code>或者</code>CMD<code>执行以下命令（注意将</code>username` 替换为自己的用户名）</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping username.github.io</span><br></pre></td></tr></tbody></table></figure>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ping</span> username.github.io<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>得到如下输出</p>
 <p><img src="https://gitee.com/xinlx/pic/raw/master/ping.png" alt="image-20210625210821211"></p>
@@ -829,6 +842,9 @@
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
 
 
 <!-- 代码语言 -->
