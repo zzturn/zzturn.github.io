@@ -371,14 +371,14 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-09
+                    2021-10-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-08-09
+                    2021-10-10
                 </div>
                 
 
@@ -423,13 +423,13 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
                 <blockquote>
 <p>  之前在 git 里面有使用过 ssh，但一直不知道其中的缘故，只是单纯地遵循教程，照葫芦画瓢，最近新买了一个 vps，又用到了 ssh，于是今天决定整理一下。</p>
 </blockquote>
-<h1 id="SSH-简介"><a href="#SSH-简介" class="headerlink" title="SSH 简介"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Secure_Shell">SSH 简介</a></h1><p>ssh 是加密的网络传输协议，最常见的用途是远程登陆系统。</p>
+<h2 id="SSH-简介"><a href="#SSH-简介" class="headerlink" title="SSH 简介"></a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Secure_Shell">SSH 简介</a></h2><p>ssh 是加密的网络传输协议，最常见的用途是远程登陆系统。</p>
 <blockquote>
 <p>  好奇：ssh 是在哪一层 OSI 网络结构，应用层吗？</p>
 </blockquote>
-<h1 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h1><p>目前笔者接触到的命令有三个：<code>ssh-keygen</code>, <code>ssh</code>, <code>ssh-copy-id</code></p>
+<h2 id="命令详解"><a href="#命令详解" class="headerlink" title="命令详解"></a>命令详解</h2><p>目前笔者接触到的命令有三个：<code>ssh-keygen</code>, <code>ssh</code>, <code>ssh-copy-id</code></p>
 <p>现在来一一说明</p>
-<h2 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a><code>ssh-keygen</code></h2><p>OpenSSH authentication key utility</p>
+<h3 id="ssh-keygen"><a href="#ssh-keygen" class="headerlink" title="ssh-keygen"></a><code>ssh-keygen</code></h3><p>OpenSSH authentication key utility</p>
 <p>用于生成 ssh key 的</p>
 <p>笔者一开始接触 ssh 是在 <a target="_blank" rel="noopener" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">github 配置 ssh</a> 里面：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ ssh-keygen -t ed25519 -C <span class="token string">"your_email@example.com"</span> -f ~/.ssh/ed25519_id<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -456,7 +456,7 @@ SSH 简介ssh 是加密的网络传输协议，最常见的用途是远程登陆
 </tr>
 </tbody></table>
 <p>执行上述命令后，会让你输入 <code>phraseKey</code>，最后就会在 <code>~/.ssh</code> 里生成一个名为 <code>ed25519_id</code> 以及 <code>ed25519_id.pub</code> 的文件 </p>
-<h2 id="ssh-及配置文件"><a href="#ssh-及配置文件" class="headerlink" title="ssh 及配置文件"></a><code>ssh</code> 及配置文件</h2><p>OpenSSH remote login client</p>
+<h3 id="ssh-及配置文件"><a href="#ssh-及配置文件" class="headerlink" title="ssh 及配置文件"></a><code>ssh</code> 及配置文件</h3><p>OpenSSH remote login client</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">ssh</span> root@1.2.3.4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这个命令没什么特别需要说明的，主要用法就是这个了，现在看看配置文件。</p>
@@ -514,7 +514,7 @@ $ <span class="token function">git</span> clone git@github_company.com:luoxin971
 
 
 
-<h2 id="ssh-copy-id"><a href="#ssh-copy-id" class="headerlink" title="ssh-copy-id"></a><span id="ssh-copy-id"><code>ssh-copy-id</code></span></h2><p>主要就是在用 ssh 登录的时候，将公钥放到远程服务器上，免去每次都要输入远端密码的问题。</p>
+<h3 id="ssh-copy-id"><a href="#ssh-copy-id" class="headerlink" title="ssh-copy-id"></a><span id="ssh-copy-id"><code>ssh-copy-id</code></span></h3><p>主要就是在用 ssh 登录的时候，将公钥放到远程服务器上，免去每次都要输入远端密码的问题。</p>
 <blockquote>
 <p>  主要参考 <a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-setup-passwordless-ssh-login/">How to Setup Passwordless SSH Login</a></p>
 </blockquote>
@@ -647,55 +647,6 @@ $ ssh-copy-id japan<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/2552719298/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git 进阶使用">
-                        
-                        <span class="card-title">Git 进阶使用</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/posts/88163c28/">
                     <div class="card-image">
                         
@@ -712,8 +663,65 @@ $ ssh-copy-id japan<span aria-hidden="true" class="line-numbers-rows"><span></sp
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
+                                </a>
+                            
+                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
+                                    教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/GitHub-Action/">
+                        <span class="chip bg-color">GitHub Action</span>
+                    </a>
+                    
+                    <a href="/tags/git-submodule/">
+                        <span class="chip bg-color">git submodule</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/2552719298/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git 进阶使用">
+                        
+                        <span class="card-title">Git 进阶使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-27
                             </span>
                         <span class="publish-author">
                             
@@ -730,8 +738,8 @@ $ ssh-copy-id japan<span aria-hidden="true" class="line-numbers-rows"><span></sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                        <span class="chip bg-color">工具</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
