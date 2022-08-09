@@ -4,12 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="从hexo博客自动部署到githubAction, xin">
-    <meta name="description" content="
-之前在 git 里面有使用过 ssh，但一直不知道其中的缘故，只是单纯地遵循教程，照葫芦画瓢，最近新买了一个 vps，又用到了 ssh，于是今天决定整理一下。
-
-
-最近重新把 hexo 博客倒腾了一下，完成了自动部署，其中了解到了 git">
+    <meta name="keywords" content="Git 命令基本使用, xin">
+    <meta name="description" content="Git 基本使用其实本意是想整理一下自己不太会的 Git 的命令，但是为了完整性，所以先介绍一下基本命令的使用。
+加之，最近有看到公司的新手同事，也不太会这些命令，想到自己一开始学 Git 也有些懵，搞不清重点，所以前人栽树，后人乘凉，我来">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>从hexo博客自动部署到githubAction | xin</title>
+    <title>Git 命令基本使用 | xin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -317,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">从hexo博客自动部署到githubAction</h1>
+                    <h1 class="description center-align post-title">Git 命令基本使用</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +343,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">工具</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -358,8 +355,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                工具
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -371,28 +368,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-08-07
+                    2022-08-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-08-07
+                    2022-08-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    192
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -420,14 +417,95 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>之前在 git 里面有使用过 ssh，但一直不知道其中的缘故，只是单纯地遵循教程，照葫芦画瓢，最近新买了一个 vps，又用到了 ssh，于是今天决定整理一下。</p>
-</blockquote>
+                <h1 id="Git-基本使用"><a href="#Git-基本使用" class="headerlink" title="Git 基本使用"></a>Git 基本使用</h1><p>其实本意是想整理一下自己不太会的 Git 的命令，但是为了完整性，所以先介绍一下基本命令的使用。</p>
+<p>加之，最近有看到公司的新手同事，也不太会这些命令，想到自己一开始学 <code>Git</code> 也有些懵，搞不清重点，所以前人栽树，后人乘凉，我来归纳一下一些基本常用的命令吧。</p>
+<p>以下是根据自己在工作中实际生产环境的需要，来说明一下 Git  的基本命令。</p>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><ol start="0">
+<li><p>安装 Git</p>
+</li>
+<li><p>配置用户名、密码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config user.name <span class="token string">"[username]"</span>
+<span class="token function">git</span> config user.email <span class="token string">"[useremail]"</span>
+<span class="token comment"># username 替换为自己的用户名</span>
+<span class="token comment"># useremail 替换为自己的邮箱</span>
+<span class="token comment"># 如 git config user.name "luoxin"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <blockquote>
-<p>最近重新把 hexo 博客倒腾了一下，完成了自动部署，其中了解到了 git submodule 以及 github action，在此记录一下。</p>
+<p>注意：[xxx] 表示此处需要根据自己的实际情况来填写，下同</p>
 </blockquote>
-<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>很久没有写博客了，今天一时兴起想重新倒腾一下，但是看到 hexo 博客里源文件的内容实在是太乱了，对用户有用的地方基本只有 source 里的 markdown 文件了。于是想着是否可以将文章内容与其它源文件分开，以及实现 CICD 自动部署？</p>
-<h1 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h1><h1 id="github-action"><a href="#github-action" class="headerlink" title="github action"></a>github action</h1>
+</li>
+<li><p>配置 ssh 密钥（可选）</p>
+<p>首先说明这一步是可选的。</p>
+<p>其实我本人在日常中也没怎么用，直接用的 http。但是前两天有个项目要求用 ssh，这次刚好写上去</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -c <span class="token string">"[useremail]"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>会让你输入存放 key（公钥）的路径，一般选默认的即可。</p>
+<p>接着输入 <code>passphrase</code>，也就是私钥，这个可设可不设，设置的话，以后每次 <code>git push</code> 都需要求再次输入。</p>
+<p>继续，再次输入 <code>passphrase</code>。</p>
+<p>成功之后会在上述设置的路径下，除生成 <code>id_rsa</code> 外，还有名为 <code>id_rsa.pub</code> 的文件, 复制一下 <code>id_rsa.pub</code> 里的文件内容，留作后用。</p>
+<p>然后打开 <a target="_blank" rel="noopener" href="https://github.com/settings/keys"><code>Github</code></a>，进入 <code>Settings</code> -&gt; <code>SSH and GPG keys</code> -&gt; <code>New SSH key</code></p>
+<p>最后在 <code>Title</code> 随便输入一些内容，在<code>Key</code> 中输入刚刚复制的 <code>id_rsa.pub</code> 里的内容。</p>
+</li>
+<li><p>克隆仓库</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token punctuation">[</span>repository_address<span class="token punctuation">]</span> <span class="token punctuation">[</span>folder_name<span class="token punctuation">]</span>
+<span class="token comment"># repository_address 替换为仓库的 url 即可</span>
+<span class="token comment"># folder_name 替换为自己想放代码的文件夹，也可以不设置，就默认在当前目录下新建一个与 repository 同名的文件夹</span>
+<span class="token comment"># 如 git clone https://github.com/luoxin971/Study-notes.git</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><h3 id="基本代码提交流程"><a href="#基本代码提交流程" class="headerlink" title="基本代码提交流程"></a>基本代码提交流程</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化，注意要在空文件夹里，如果不是新建一个项目，则可以用 git clone 拉代码</span>
+<span class="token function">git</span> init
+<span class="token comment"># 将文件从工作区添加到暂存区</span>
+<span class="token function">git</span> <span class="token function">add</span> <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+<span class="token comment"># 将暂存区的所有内容提交到当前分支，commit_info 替换为对这次提交的说明，具体可在网上搜 git 提交规范</span>
+<span class="token function">git</span> commit -m <span class="token string">"[commit_info]"</span>
+<span class="token comment"># 将当前分支推送到远程分支</span>
+<span class="token function">git</span> push origin <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>  <code>git add</code>, <code>git commit</code>, <code>git push</code> 三步就是每次提交代码的基本步骤</p>
+<p>  当然，如果没有远程仓库的话，<code>git push</code> 就无从说起了</p>
+</blockquote>
+<h3 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看当前 git 状态</span>
+<span class="token function">git</span> status
+<span class="token comment"># 查看 git 提交历史，后面可以接其他参数，我个人常用的有，git log --oneline, git log -n 10</span>
+<span class="token function">git</span> log
+
+
+<span class="token comment">## 以下是分支操作</span>
+<span class="token comment"># 查看分支，后接其他参数，可实现其他与分支相关的命令</span>
+<span class="token function">git</span> branch
+<span class="token comment"># 切换分支</span>
+<span class="token function">git</span> switch/checkout <span class="token punctuation">[</span>branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 创建分支，以下两个都可以</span>
+<span class="token function">git</span> checkout -b <span class="token punctuation">[</span>new_branch_name<span class="token punctuation">]</span>
+<span class="token function">git</span> switch -c <span class="token punctuation">[</span>new_branch_name<span class="token punctuation">]</span>
+<span class="token comment"># 合并分支</span>
+<span class="token function">git</span> merge <span class="token punctuation">[</span>other_branch_name<span class="token punctuation">]</span>
+
+
+<span class="token comment"># 从远程分支拉取代码</span>
+<span class="token function">git</span> pull
+
+
+<span class="token comment"># 放弃更改，其实有很多的用法，在此只介绍两个常用的</span>
+<span class="token function">git</span> restore <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+<span class="token comment"># 将暂存区的文件返回到工作区</span>
+<span class="token function">git</span> restore --staged <span class="token punctuation">[</span>filename<span class="token punctuation">]</span>
+
+<span class="token comment">## 打草稿，（我也不知道中文该怎么说/(ㄒoㄒ)/~~）</span>
+<span class="token comment"># 将当前的更改保存，-m 后的 stash_info 类似于前面的 git commit -m "xxx"，可以不写，但推荐加加上，方便分辨</span>
+<span class="token function">git</span> stash -m <span class="token string">"[stash_info]"</span>
+<span class="token comment"># 显示所有的 stash</span>
+<span class="token function">git</span> stash list
+<span class="token comment"># 应用 stash，其中 stash_num 为上述 git stash list 中显示的各 stash 的序号</span>
+<span class="token function">git</span> stash apply <span class="token punctuation">[</span>stash_num<span class="token punctuation">]</span>
+
+<span class="token comment"># 其实还有 git diff，但是我一般都用 vscode 看两者的差别，所以用的不多，况且用命令行显示这个实在是不太直观</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>二八定律，其实只要掌握了上述命令（其实只掌握<a href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4">基本命令</a> 也够了），就可以满足 80% 的实际生产需要。但仅仅掌握这些肯定是不够的，如果想进一步学习，可以参考 <a target="_blank" rel="noopener" href="https://luoxin.vip/posts/2552719298/">Git 进阶使用</a>。</p>
+
                 
             </div>
             <hr/>
@@ -453,7 +531,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.luoxin.vip/2022/08/07/%E4%BB%8Ehexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0gitAction/">https://blog.luoxin.vip/2022/08/07/%E4%BB%8Ehexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%88%B0gitAction/</a>
+                    <a href="https://blog.luoxin.vip/2022/08/09/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">https://blog.luoxin.vip/2022/08/09/Git%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -491,8 +569,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">工具</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -544,13 +622,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/08/07/ssh/">
+                <a href="/2022/08/09/Git%20%E8%BF%9B%E9%98%B6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="SSH 使用">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Git 进阶使用">
                         
-                        <span class="card-title">SSH 使用</span>
+                        <span class="card-title">Git 进阶使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -561,14 +639,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux/" class="post-category">
-                                    Linux
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -578,8 +656,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
@@ -825,7 +903,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">14.5k</span>
+                        class="white-color">16.3k</span>
             
             
             
