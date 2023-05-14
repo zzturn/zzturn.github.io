@@ -4,12 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="云服务器初始化, xin">
-    <meta name="description" content="
-  最近又买了台低配的轻量应用服务器，开始捣鼓，现在开始记录一下初期的全过程
+    <meta name="keywords" content="Windows重装系统记录, xin">
+    <meta name="description" content="前端时间瞎折腾，把电脑玩坏了，于是重新装了一下系统，在此记录总结一下装系统以及系统配置的过程。
 
-添加SSH 登录添加ssh登录主要分为三步：本地机器生成 ssh key，将公钥上传至服务器，修改服务器配置
-本地生成 ssh key如果之前有生成过 ssh">
+装系统直接使用u盘制作 pe 盘，然后直接点击windows 10的 iso 文件，点击 setup即可
+
+windows系统应从官方系统下载">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>云服务器初始化 | xin</title>
+    <title>Windows重装系统记录 | xin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -317,12 +317,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">云服务器初始化</h1>
+                    <h1 class="description center-align post-title">Windows重装系统记录</h1>
                 </div>
             </div>
         </div>
@@ -346,8 +346,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                <span class="chip bg-color">云服务器</span>
+                            <a href="/tags/%E6%8A%98%E8%85%BE/">
+                                <span class="chip bg-color">折腾</span>
+                            </a>
+                        
+                            <a href="/tags/Windows/">
+                                <span class="chip bg-color">Windows</span>
                             </a>
                         
                     </div>
@@ -358,8 +362,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Linux/" class="post-category">
-                                Linux
+                            <a href="/categories/category/" class="post-category">
+                                category
                             </a>
                         
                     </div>
@@ -385,14 +389,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    956
+                    364
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -420,132 +424,52 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>  最近又买了台低配的轻量应用服务器，开始捣鼓，现在开始记录一下初期的全过程</p>
-</blockquote>
-<h2 id="添加SSH-登录"><a href="#添加SSH-登录" class="headerlink" title="添加SSH 登录"></a>添加SSH 登录</h2><p>添加ssh登录主要分为三步：本地机器生成 ssh key，将公钥上传至服务器，修改服务器配置</p>
-<h3 id="本地生成-ssh-key"><a href="#本地生成-ssh-key" class="headerlink" title="本地生成 ssh key"></a>本地生成 ssh key</h3><p>如果之前有生成过 ssh key 且想继续使用的话，这一步可以跳过</p>
-<p>生成 ssh key 命令如下</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t ed25519 -C <span class="token string">"your_email@example.com"</span> -f ~/.ssh/ed25519_id<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>（可选）编写本地机器文件 <code>~/.ssh/config</code>，添加以下内容</p>
-<pre class="line-numbers language-none"><code class="language-none">Host &lt;connection_name&gt;
-    HostName &lt;your_server_ip&gt;
-    User root
-    IdentityFile ~/.ssh/ed25519_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="公钥上传至服务器"><a href="#公钥上传至服务器" class="headerlink" title="公钥上传至服务器"></a>公钥上传至服务器</h3><p>这一步介绍两个方法：</p>
+                <p>前端时间瞎折腾，把电脑玩坏了，于是重新装了一下系统，在此记录总结一下装系统以及系统配置的过程。</p>
 <ul>
-<li>在本地机器上</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token operator">&lt;</span>connection_name<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><code>&lt;connection_name&gt;</code> 在 <code>config</code> 文件中设置，也可直接使用</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span>@<span class="token operator">&lt;</span>host<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<li><p>装系统直接使用u盘制作 <a target="_blank" rel="noopener" href="https://www.wepe.com.cn/">pe 盘</a>，然后直接点击windows 10的 iso 文件，点击 <code>setup</code>即可</p>
+</li>
+<li><p>windows系统应从<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows10">官方系统</a>下载，具有包含最新更新和驱动</p>
+</li>
+<li><p>平时大部分软件装在 D 盘，大多可以得到保留</p>
+</li>
+<li><p>装系统后 D 盘软件应建立快捷方式，放置于开始菜单内</p>
+</li>
+<li><p>C 盘中一下文件需要备份</p>
 <ul>
-<li>进入云服务器</li>
+<li><code>.config</code></li>
+<li><code>.ssh</code></li>
+<li><code>.vscode</code></li>
+<li>未完待续</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> .ssh/authorized_keys
-<span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">600</span> .ssh/authorized_keys<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>然后将上一步生成的公钥内容粘贴到 <code>authorized_keys</code> 里</p>
-<h3 id="修改服务器配置"><a href="#修改服务器配置" class="headerlink" title="修改服务器配置"></a>修改服务器配置</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /etc/ssh/sshd_config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>修改配置</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">PasswordAuthentication <span class="token function">yes</span> <span class="token comment"># 改为no</span>
-PubkeyAuthentication <span class="token function">yes</span> <span class="token comment"># 将注释打开并改为yes</span>
-AuthorizedKeysFile	.ssh/authorized_keys  <span class="token comment"># 私钥路径</span>
-<span class="token comment"># 其它选项自己看文件注释按需修改</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">systemctl restart sshd
-<span class="token comment"># 也可以用 service sshd restart</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>  潜在的坑：</p>
-<ol>
-<li>如果是为 user 添加 ssh 登录，记得修改服务器里相关文件的 owner</li>
-<li>如果修改了 ssh 的默认端口，记得要在服务器控制台里对外开放相应端口</li>
-</ol>
-</blockquote>
-<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">useradd</span> -m <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果要设置密码</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">passwd</span> <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>如果要删除用户</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">userdel</span> -r <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>添加 <code>sudo</code> 用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">usermod</span> -a -G <span class="token function">sudo</span> <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>随后按照上述[添加SSH 登录](##添加SSH 登录)的内容为新用户设置 ssh 登录，注意相关文件权限</p>
-<h2 id="shell-相关"><a href="#shell-相关" class="headerlink" title="shell 相关"></a>shell 相关</h2><ul>
-<li><p>安装基础命令</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update -y
-<span class="token function">sudo</span> <span class="token function">apt</span> upgrade -y
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y ufw <span class="token function">git</span> <span class="token function">zip</span> <span class="token function">unzip</span> <span class="token function">vim</span> <span class="token function">sudo</span> <span class="token function">curl</span> <span class="token function">wget</span> tree iftop iotop ufw<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><pre><code>vim 显示行号
-</code></pre>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"set nu"</span> <span class="token operator">&gt;&gt;</span> ~/.vimrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li><p>装系统前最好备份之前的环境变量</p>
 </li>
-<li><p>修改主机名</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看主机名</span>
-<span class="token function">hostname</span>
-<span class="token comment"># 修改</span>
-<span class="token function">sudo</span> hostnamectl set-hostname <span class="token operator">&lt;</span>newhostname<span class="token operator">&gt;</span>
-<span class="token function">sudo</span> <span class="token function">vim</span> /etc/hosts
-<span class="token comment"># 修改 127.0.0.1 到新主机名</span>
-<span class="token function">sudo</span> systemctl restart networking<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>在鼠标右键增加新建文件夹的方式如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.md]
+"Content Type"="text/markdown"
+
+[HKEY_CLASSES_ROOT\.md\ShellNew]
+"FileName"="C:\\Users\\xin\\AppData\\Roaming\\Microsoft\\Windows\\Templates\\MarkdownTemplate.md"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>保存为 <code>add_markdown_template.reg</code> 文件，点击运行，并在相应路径下新建文件即可</p>
+</li>
+<li><p>关闭软件的 uac 弹窗可以通过这个<a target="_blank" rel="noopener" href="https://github.com/XIU2/UACWhitelistTool">开源程序</a></p>
+</li>
+<li><p>可以通过 <code>Windows10Manager</code> 软件修改 <code>下载</code>，<code>图片</code> 等文件夹的位置，更换为 D 盘下的文件夹</p>
+</li>
+<li><p>Office 可以通过 <a target="_blank" rel="noopener" href="https://otp.landian.vip/zh-cn/">Office Tool Plus</a>下载</p>
+</li>
+<li><p>Windows 似乎是可以根据之前的激活状态，重装之后并不需要重新激活</p>
+</li>
+<li><p><code>Postman</code>, <code>Idea</code>, <code>PowerToys</code>, <code>IDM</code>, <code>Pycharm</code> 需要重新安装</p>
+</li>
+<li><p><code>VSCode</code> 为了能加入右键中，最好也重装</p>
+</li>
+<li><p>平时安装软件最好也安装绿色免安装版</p>
+</li>
 </ul>
-<h2 id="安装clash"><a href="#安装clash" class="headerlink" title="安装clash"></a>安装clash</h2><p>试过了很多办法都不太行，最后还是简单粗暴的从本地上传文件到服务器，用到<code>scp</code>命令（貌似Windows自带）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">scp</span> -P <span class="token operator">&lt;</span>port<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>local_file_path<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>username<span class="token operator">&gt;</span>@<span class="token operator">&lt;</span>host<span class="token operator">&gt;</span>:<span class="token operator">&lt;</span>server_file_path<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>首先在本地机器上下载 <a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">clash</a>，然后用 <code>scp</code> 传输至服务器，然后解压</p>
-<pre class="line-numbers language-none"><code class="language-none">gzip -d &lt;gz_file&gt;
-mv &lt;filename&gt; clash
-chmod +x clash
-# 下载订阅
-wget -O config.yaml &lt;subscribe_url&gt;
-./clash -d .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>如果提示下载不来 <code>Country.mmdb</code>，则继续将本地机器上的文件用 <code>scp</code> 传输过去</p>
-<p>注意，<code>config.yaml</code> 里设置 <code>external-controller: '0.0.0.0:9090'</code>，即可在 <a target="_blank" rel="noopener" href="http://yacd.haishan.me/#/rules">Clash-dashboard</a> 进行远程设置</p>
-<h2 id="zsh-omz-安装"><a href="#zsh-omz-安装" class="headerlink" title="zsh, omz 安装"></a>zsh, omz 安装</h2><p>可根据 <a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">Installing ZSH</a>来安装 <code>zsh</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">zsh</span>
-<span class="token function">zsh</span> --version
-chsh -s <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">)</span></span>
-<span class="token comment"># 重新登录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>根据 <a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh#getting-started">Installing OMZ</a>来安装 <code>omz</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sh</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">wget</span> -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>然后根据 <code>~/.zshrc</code> 文件按需修改配置即可</p>
-<p>下面介绍两款插件 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">zsh-autosuggestions</a>和<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">zsh-syntax-highlighting</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-autosuggestions
-<span class="token comment"># 接着在 .zshrc 文件的 plugins 里添加 zsh-autosuggestions</span>
-<span class="token comment"># 常用插件 plugins=(git z sudo zsh-autosuggestions)</span>
-
-<span class="token function">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-syntax-highlighting
-<span class="token builtin class-name">echo</span> <span class="token string">"source <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${ZDOTDIR<span class="token operator">:-</span>$HOME}</span>/.zshrc
-<span class="token builtin class-name">source</span> <span class="token environment constant">$HOME</span>/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="常用软件安装"><a href="#常用软件安装" class="headerlink" title="常用软件安装"></a>常用软件安装</h2><p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/debian/">docker</a>官方步骤已经很清楚了，在此不再赘叙</p>
-<p>docker 为非 root 用户添加权限（免去每次都要 <code>sudo</code>）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">usermod</span> -aG <span class="token function">docker</span> <span class="token environment constant">$USER</span>
-newgrp <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023090998">portainer</a></p>
-<p><a target="_blank" rel="noopener" href="https://alist.nn.ci/zh/guide/install/docker.html">alist</a></p>
-<p>pushdeer</p>
-<p>rsshub</p>
-<p>frps</p>
-<p>本地机器开启 ssh 的时候，要注意检查 openssh 服务是否下载/启用</p>
-<p>具有管理源权限的用户设置publickey登录时，需要在 <code>C:\ProgramData\ssh\administrators_authorized_keys</code> 中添加 pubkey</p>
 
                 
             </div>
@@ -572,7 +496,7 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://blog.luoxin.vip/posts/397875bf/">https://blog.luoxin.vip/posts/397875bf/</a>
+                    <a href="https://blog.luoxin.vip/posts/45ecaaf7/">https://blog.luoxin.vip/posts/45ecaaf7/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -610,8 +534,12 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                                    <span class="chip bg-color">云服务器</span>
+                                <a href="/tags/%E6%8A%98%E8%85%BE/">
+                                    <span class="chip bg-color">折腾</span>
+                                </a>
+                            
+                                <a href="/tags/Windows/">
+                                    <span class="chip bg-color">Windows</span>
                                 </a>
                             
                         </div>
@@ -657,9 +585,64 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/45ecaaf7/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Windows重装系统记录">
+                        
+                        <span class="card-title">Windows重装系统记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/category/" class="post-category">
+                                    category
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%8A%98%E8%85%BE/">
+                        <span class="chip bg-color">折腾</span>
+                    </a>
+                    
+                    <a href="/tags/Windows/">
+                        <span class="chip bg-color">Windows</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/ac63f156/">
                     <div class="card-image">
@@ -677,9 +660,9 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-05-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-05-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -701,63 +684,6 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
                     
                     <a href="/tags/%E8%A7%A3%E5%8E%8B%E7%BC%A9/">
                         <span class="chip bg-color">解压缩</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/88163c28/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="从hexo博客自动部署到githubAction">
-                        
-                        <span class="card-title">从hexo博客自动部署到githubAction</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
-                                    工具
-                                </a>
-                            
-                            <a href="/categories/%E6%95%99%E7%A8%8B/" class="post-category">
-                                    教程
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/GitHub-Action/">
-                        <span class="chip bg-color">GitHub Action</span>
-                    </a>
-                    
-                    <a href="/tags/git-submodule/">
-                        <span class="chip bg-color">git submodule</span>
                     </a>
                     
                 </div>
