@@ -385,7 +385,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.9k
                 </div>
                 
 
@@ -545,24 +545,28 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <p>  首先说明，其实购买一般的域名真不贵，一年在30以内，像一些 <code>.top</code>, <code>.xyz</code> 等域名更是很便宜，一年只需要5块钱。</p>
 </blockquote>
 <ol>
-<li><p>首先打开命令行工具，``Powershell<code>或者</code>CMD<code>执行以下命令（注意将</code>username` 替换为自己的用户名）</p>
+<li><div class="snote idea yellow"><p>经验证，本步骤已过时</p></div>
+
+<p><del>首先打开命令行工具，``Powershell<code>或者</code>CMD<code>执行以下命令（注意将</code>username` 替换为自己的用户名）</del></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ping</span> username.github.io<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>得到如下输出</p>
-<p><img src="https://gitee.com/xinlx/pic/raw/master/ping.png" alt="image-20210625210821211"></p>
-<p>其中 <code>[185.***.***.***]</code> 就是博客的公网 ip 了，记住这个。</p>
+<p><del>得到如下输出</del></p>
+<p><img src="https://blog.luoxin.vip/files/img/202305180150647.png" alt="ping"></p>
+<p><del>其中 <code>[185.***.***.***]</code> 就是博客的公网 ip 了，记住这个。</del></p>
 </li>
 <li><p>接着搜索 ”域名注册“，然后找到腾讯云或者阿里云，选择合适的进行购买（需要进行实名认证）。</p>
 </li>
 <li><p>购买完成后，应该会进入控制台，选择 我的域名 -&gt; 解析</p>
-<p><img src="https://gitee.com/xinlx/pic/raw/master/%E5%9F%9F%E5%90%8D%E6%B3%A8%E5%86%8C.png"></p>
-<p>接着进入一个新的界面，点击快速添加解析，输入刚刚在第 1 步得到的 ip 地址即可，（也可点击添加记录）。</p>
-<p><img src="https://gitee.com/xinlx/pic/raw/master/jiexi.png" alt="image-20210625211223283"></p>
+<p><img src="https://blog.luoxin.vip/files/img/202305180147924.png" alt="域名注册"></p>
+<p>接着进入一个新的界面，<del>点击快速添加解析，输入刚刚在第 1 步得到的 ip 地址即可，（也可点击添加记录)。</del></p>
+<div class="snote idea yellow"><p>此处记录类型应选择 CNAME，记录值为 username.github.io </p></div>
+
+<p><img src="https://blog.luoxin.vip/files/img/202305180146393.png" alt="jiexi"></p>
 </li>
 <li><p>在博客文件的根目录，找到 source 文件夹</p>
+<p><img src="https://blog.luoxin.vip/files/img/202305180144436.png" alt="20210625211704127"></p>
 </li>
 </ol>
-<p><img src="https://gitee.com/xinlx/pic/raw/master/20210625211704127.png" alt="image-20210625211704127"></p>
 <p>​	在里面添加一个名为 <code>CNAME</code> 的文件，文件内容为第 2 步中注册的域名，如 <a target="_blank" rel="noopener" href="https://luoxin.vip/"><code>luoxin.vip</code></a></p>
 <blockquote>
 <p>  不会的同学，可以先新建名为 <code>CNAME.txt</code> 的文件，然后用记事本打开，输入域名，保存后，重命名为 <code>CNAME</code></p>
@@ -571,14 +575,14 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <li><p>保存之后，接着在 <code>Powershell</code> 或者 <code>CMD</code> 依次执行以下命令 <code>hexo g</code>，<code>hexo d</code></p>
 </li>
 <li><p>最后一步，打开 github 里，个人博客对应的 repository，打开 setting -&gt; pages</p>
-<p><img src="https://gitee.com/xinlx/pic/raw/master/0210625212541095.png" alt="image-20210625212541095"></p>
-<p>在 <code>Custom domain</code> 处输入自己的域名</p>
+<p><img src="https://blog.luoxin.vip/files/img/0210625212541095.png" alt="0210625212541095">在 <code>Custom domain</code> 处输入自己的域名</p>
 </li>
 <li><p>至此大功告成！！！！！！</p>
 </li>
 </ol>
 <hr>
 <p>此时搭建网站的过程已基本完成，接下来，你可以查阅 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> 文档来进一步优化、美化！</p>
+<p>进阶教程可参考 <a href="https://blog.luoxin.vip/posts/88163c28/">从hexo博客自动部署到githubAction</a>，其中讲述了自动化部署的过程，只需要写好文章的 markdown便可自动发布。</p>
 <p>感谢阅读！如安装过程有任何问题，欢迎讨论！</p>
 </li>
 </ol>
