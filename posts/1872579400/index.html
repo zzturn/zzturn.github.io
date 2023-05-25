@@ -316,7 +316,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/zzturn/files@img/img/blog2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -377,7 +377,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-05-17
+                    2023-05-25
                 </div>
                 
 
@@ -550,15 +550,15 @@
 <p>知道对类里哪个方法进行增强</p>
 <p><strong>语法结构</strong>：<code>execution([权限修饰符][返回类型][类全路径][方法名称]([参数列表]))</code></p>
 <ul>
-<li><p>eg: 对 <code>com.company.luoxin.user</code> 类里的 <code>add</code> 方法进行增强</p>
-<p> <code>execution(* com.company.luoxin.user.add(..))</code></p>
+<li><p>eg: 对 <code>com.zturn.user</code> 类里的 <code>add</code> 方法进行增强</p>
+<p> <code>execution(* com.zturn.user.add(..))</code></p>
 <p><code>*</code> 是通配符，也可以用在方法名称、类路径中</p>
 </li>
 </ul>
 </li>
 <li><p>相同切入点抽取</p>
 <p>在方法前加入以下注解</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.luoxin.User.add(..))"</span><span class="token punctuation">)</span>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.zturn.User.add(..))"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">enhance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>然后再通知前加入以下注解（以 <code>@Before </code>为例）</p>
@@ -597,7 +597,7 @@
 
     <span class="token comment">// order 传参</span>
     <span class="token comment">// 注意使用了 @Pointcut</span>
-    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.luoxin.spring.Music.play(..)) &amp;&amp; args(order)"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Pointcut</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"execution(* com.zturn.spring.Music.play(..)) &amp;&amp; args(order)"</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">playEnhance</span><span class="token punctuation">(</span><span class="token keyword">int</span> order<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
 
@@ -735,7 +735,7 @@ No.4: 1 times.<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 <span class="token annotation punctuation">@Aspect</span>
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">NewMethod</span> <span class="token punctuation">{</span>
-    <span class="token annotation punctuation">@DeclareParents</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"com.luoxin.spring.Music"</span><span class="token punctuation">,</span> defaultImpl <span class="token operator">=</span> <span class="token class-name">MusicStop</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@DeclareParents</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"com.zturn.spring.Music"</span><span class="token punctuation">,</span> defaultImpl <span class="token operator">=</span> <span class="token class-name">MusicStop</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">Stop</span> stop<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -752,7 +752,7 @@ No.4: 1 times.<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 <p>综上，简而言之，AOP 基本就是首先用 IOC 注入依赖，然后 ：</p>
 <ol>
 <li>在增强方法所在类上，引入 <code>@Aspect</code> 注解</li>
-<li>在增强方法上，引入 <code>@Before</code> 等注解，注解里面 写上<code>execution(* com.company.luoxin.user.add(..))</code></li>
+<li>在增强方法上，引入 <code>@Before</code> 等注解，注解里面 写上<code>execution(* com.zturn.user.add(..))</code></li>
 <li>配置文件上加入 <code>@EnableAspectJAutoProxy</code> 注解</li>
 </ol>
 
@@ -873,8 +873,7 @@ No.4: 1 times.<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 <a href="/posts/2142312108/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Maven 初步介绍">
+                        <img src="https://cdn.jsdelivr.net/gh/zzturn/files@img/img/blog8.jpg" class="responsive-img" alt="Maven 初步介绍">
                         
                         <span class="card-title">Maven 初步介绍</span>
                     </div>
@@ -922,8 +921,7 @@ No.4: 1 times.<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                 <a href="/posts/3428300145/">
                     <div class="card-image">
                         
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="IOC 基于注解方式管理">
+                        <img src="https://cdn.jsdelivr.net/gh/zzturn/files@img/img/blog6.jpg" class="responsive-img" alt="IOC 基于注解方式管理">
                         
                         <span class="card-title">IOC 基于注解方式管理</span>
                     </div>
@@ -1152,7 +1150,7 @@ No.4: 1 times.<span aria-hidden="true" class="line-numbers-rows"><span></span><s
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">18.5k</span>
+                        class="white-color">17.9k</span>
             
             
             
