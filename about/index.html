@@ -578,7 +578,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"个人随想","value":1},{"name":"Java","value":6},{"name":"工具","value":3},{"name":"教程","value":3},{"name":"FixProblem","value":1},{"name":"折腾","value":1},{"name":"category","value":1},{"name":"Linux","value":2},{"name":"test","value":1}],
+                data: [{"name":"Java","value":6},{"name":"个人随想","value":1},{"name":"工具","value":3},{"name":"教程","value":3},{"name":"FixProblem","value":1},{"name":"折腾","value":1},{"name":"category","value":1},{"name":"Linux","value":2},{"name":"test","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -602,7 +602,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["Spring","Git","PowerShell","Windows","Hexo","搭建博客","Maven","Java 基础","WSL","WindowsTerminal"]
+                data: ["Spring","Git","PowerShell","Windows","Hexo","搭建博客","Java 基础","Maven","WindowsTerminal","美化"]
             }
         ],
         yAxis: [
@@ -757,32 +757,20 @@
             
             
             
-            <a href="/tags/Maven/">
-                <span class="chip center-align waves-effect waves-light chip-default">Maven</span>
-            </a>
-            
-            
-            
             <a href="/tags/Java-%E5%9F%BA%E7%A1%80/">
                 <span class="chip center-align waves-effect waves-light chip-default">Java 基础</span>
             </a>
             
             
             
+            <a href="/tags/Maven/">
+                <span class="chip center-align waves-effect waves-light chip-default">Maven</span>
+            </a>
+            
+            
+            
             <a href="/tags/PowerShell/">
                 <span class="chip center-align waves-effect waves-light chip-default">PowerShell</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Windows/">
-                <span class="chip center-align waves-effect waves-light chip-default">Windows</span>
-            </a>
-            
-            
-            
-            <a href="/tags/WSL/">
-                <span class="chip center-align waves-effect waves-light chip-default">WSL</span>
             </a>
             
             
@@ -795,6 +783,18 @@
             
             <a href="/tags/%E7%BE%8E%E5%8C%96/">
                 <span class="chip center-align waves-effect waves-light chip-default">美化</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Windows/">
+                <span class="chip center-align waves-effect waves-light chip-default">Windows</span>
+            </a>
+            
+            
+            
+            <a href="/tags/WSL/">
+                <span class="chip center-align waves-effect waves-light chip-default">WSL</span>
             </a>
             
             
@@ -817,12 +817,6 @@
             
             
             
-            <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                <span class="chip center-align waves-effect waves-light chip-default">云服务器</span>
-            </a>
-            
-            
-            
             <a href="/tags/GitHub-Action/">
                 <span class="chip center-align waves-effect waves-light chip-default">GitHub Action</span>
             </a>
@@ -831,6 +825,12 @@
             
             <a href="/tags/git-submodule/">
                 <span class="chip center-align waves-effect waves-light chip-default">git submodule</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                <span class="chip center-align waves-effect waves-light chip-default">云服务器</span>
             </a>
             
             
@@ -1088,14 +1088,6 @@ $(function () {
     
 
     <!-- 鼠标星星特效 -->
-     
-        <script type="text/javascript">
-            // 只在桌面版网页启用特效
-            var windowWidth = $(window).width();
-            if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/zzturn/zzturn.github.io@master/libs/others/star.js"><\/script>');
-            }
-        </script>
     
 
      
