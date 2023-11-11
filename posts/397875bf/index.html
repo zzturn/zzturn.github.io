@@ -378,14 +378,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-11-10
+                    2023-11-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    956
+                    1k
                 </div>
                 
 
@@ -485,7 +485,7 @@ AuthorizedKeysFile	.ssh/authorized_keys  <span class="token comment"># 私钥路
 <li><p>安装基础命令</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update -y
 <span class="token function">sudo</span> <span class="token function">apt</span> upgrade -y
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y ufw <span class="token function">git</span> <span class="token function">zip</span> <span class="token function">unzip</span> <span class="token function">vim</span> <span class="token function">sudo</span> <span class="token function">curl</span> <span class="token function">wget</span> tree iftop iotop ufw<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y ufw <span class="token function">git</span> <span class="token function">zip</span> <span class="token function">unzip</span> <span class="token function">vim</span> <span class="token function">curl</span> <span class="token function">wget</span> tree iftop iotop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><pre><code>vim 显示行号
 </code></pre>
@@ -524,13 +524,25 @@ chsh -s <span class="token variable"><span class="token variable">$(</span><span
 
 <p>然后根据 <code>~/.zshrc</code> 文件按需修改配置即可</p>
 <p>下面介绍两款插件 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">zsh-autosuggestions</a>和<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">zsh-syntax-highlighting</a></p>
+<blockquote>
+<p>  20231111补充：<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-history-substring-search#zsh-history-substring-search">zsh-history-substring-search</a></p>
+</blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/zsh-users/zsh-autosuggestions <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-autosuggestions
 <span class="token comment"># 接着在 .zshrc 文件的 plugins 里添加 zsh-autosuggestions</span>
 <span class="token comment"># 常用插件 plugins=(git z sudo zsh-autosuggestions)</span>
 
 <span class="token function">git</span> clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-syntax-highlighting
 <span class="token builtin class-name">echo</span> <span class="token string">"source <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${ZDOTDIR<span class="token operator">:-</span>$HOME}</span>/.zshrc
-<span class="token builtin class-name">source</span> <span class="token environment constant">$HOME</span>/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<span class="token function">git</span> clone https://github.com/zsh-users/zsh-history-substring-search <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-history-substring-search
+<span class="token comment"># 修改 ~/.zshrc  plugins=( [plugins...] zsh-history-substring-search)</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"source <span class="token variable">${ZSH_CUSTOM<span class="token operator">:-</span>~<span class="token operator">/</span>.oh-my-zsh<span class="token operator">/</span>custom}</span>/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh"</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${ZDOTDIR<span class="token operator">:-</span>$HOME}</span>/.zshrc
+
+<span class="token builtin class-name">echo</span> <span class="token string">"bindkey '^[[A' history-substring-search-up"</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${ZDOTDIR<span class="token operator">:-</span>$HOME}</span>/.zshrc
+<span class="token builtin class-name">echo</span> <span class="token string">"bindkey '^[[B' history-substring-search-up"</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">${ZDOTDIR<span class="token operator">:-</span>$HOME}</span>/.zshrc
+
+<span class="token builtin class-name">source</span> <span class="token environment constant">$HOME</span>/.zshrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -541,7 +553,7 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
 
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023090998">portainer</a></p>
 <p><a target="_blank" rel="noopener" href="https://alist.nn.ci/zh/guide/install/docker.html">alist</a></p>
-<p>pushdeer</p>
+<p><del>pushdeer</del></p>
 <p>rsshub</p>
 <p>frps</p>
 <p>本地机器开启 ssh 的时候，要注意检查 openssh 服务是否下载/启用</p>
@@ -899,7 +911,7 @@ newgrp <span class="token function">docker</span><span aria-hidden="true" class=
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">19.5k</span>
+                        class="white-color">19.2k</span>
             
             
             
